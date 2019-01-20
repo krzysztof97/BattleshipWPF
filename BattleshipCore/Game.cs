@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore
 {
-    public class Battleship
+    public class Game
     {
-        public Battleship()
+        public Game()
         {
 
         }
