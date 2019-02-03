@@ -1,10 +1,9 @@
 namespace BattleshipCore.Models {
     public class BattleShip : Ship {
-        public BattleShip (char orientation) {
-            this.Armor = 3;
+        public BattleShip (OrientationEnum orientation) {
             this.Size = 3;
             this.Name = "Pancernik";
-            //to do orientation
+            this.Orientation = orientation;
         }
 
     }

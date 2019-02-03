@@ -1,10 +1,9 @@
 namespace BattleshipCore.Models {
     public class AircraftCarrier : Ship {
-        public AircraftCarrier (char orientation) {
-            this.Armor = 4;
+        public AircraftCarrier (OrientationEnum orientation) {
             this.Size = 4;
             this.Name = "Lotniskowiec";
-            //to do orientation
+            this.Orientation = orientation;
         }
     }
 }

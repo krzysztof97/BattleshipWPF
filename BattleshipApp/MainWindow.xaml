@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BattleshipApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
+    <Grid Background="PaleVioletRed">
+        <Button Content="Rozpocznij grę" Margin="344,25,342,0" VerticalAlignment="Top" Height="43"/>
+        <Grid Background="Aqua" HorizontalAlignment="Left" Height="256" Margin="10,154,0,0" VerticalAlignment="Top" Width="256"/>
+        <Grid Background="Aqua" HorizontalAlignment="Right" Height="256" Margin="0,153,10,0" VerticalAlignment="Top" Width="256">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="137*"/>
+                <ColumnDefinition Width="139*"/>
+                <ColumnDefinition Width="112*"/>
+                <ColumnDefinition Width="129*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="88*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="Drag" Grid.Column="0" Grid.Row="0"></Button>
+            <Button Content="Drag" Grid.Column="2" Grid.Row="0"></Button>
+            <Button Content="Drag" Grid.Column="1" Grid.RowSpan="2"  Grid.Row="2"></Button>
+        </Grid>
+
     </Grid>
 </Window>
