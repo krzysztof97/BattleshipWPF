@@ -1,0 +1,1 @@
+Logo wygenerowane na stronie freelogodesign.org

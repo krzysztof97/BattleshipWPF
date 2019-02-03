@@ -1,5 +1,4 @@
-﻿using BattleshipCore.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,24 +16,14 @@ using System.Windows.Shapes;
 namespace BattleshipApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Placement.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Placement : UserControl
     {
-        private Placement placement;
-
-        public MainWindow()
+        public Placement()
         {
             InitializeComponent();
-            placement = new Placement();
-            ShowPlacement();
+            Console.WriteLine("laduje");
         }
-        
-        public void ShowPlacement()
-        {
-            //MainGrid.Children.Clear();
-            MainGrid.Children.Add(placement);
-        }
-
     }
 }
