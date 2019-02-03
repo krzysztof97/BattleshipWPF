@@ -38,8 +38,7 @@ namespace BattleshipApp
             int col = 0;
             double accumulatedHeight = 0.0;
             double accumulatedWidth = 0.0;
-
-            // calc row mouse was over
+            
             foreach (var rowDefinition in PlacementGrid.RowDefinitions)
             {
                 accumulatedHeight += rowDefinition.ActualHeight;
@@ -47,8 +46,7 @@ namespace BattleshipApp
                     break;
                 row++;
             }
-
-            // calc col mouse was over
+            
             foreach (var columnDefinition in PlacementGrid.ColumnDefinitions)
             {
                 accumulatedWidth += columnDefinition.ActualWidth;
