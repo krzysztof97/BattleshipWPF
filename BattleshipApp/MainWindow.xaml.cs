@@ -16,24 +16,11 @@ using System.Windows.Shapes;
 
 namespace BattleshipApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        private Placement placement;
-
         public MainWindow()
         {
             InitializeComponent();
-            placement = new Placement();
-            ShowPlacement();
-        }
-        
-        public void ShowPlacement()
-        {
-            //MainGrid.Children.Clear();
-            MainGrid.Children.Add(placement);
         }
 
     }

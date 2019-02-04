@@ -1,4 +1,5 @@
-﻿using BattleshipCore.Models;
+﻿using BattleshipApp.ViewModels;
+using BattleshipCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace BattleshipApp
     /// <summary>
     /// Interaction logic for Placement.xaml
     /// </summary>
-    public partial class Placement : UserControl
+    public partial class PlacementControl : UserControl
     {
-        public Placement()
+        public PlacementControl()
         {
             InitializeComponent();
             PlacementGrid.MouseDown += new MouseButtonEventHandler(PlacementGridClick);
