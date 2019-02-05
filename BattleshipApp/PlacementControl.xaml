@@ -34,25 +34,44 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Lotniskowiec" Foreground="White"/>
-            <Rectangle Grid.Row="1" Fill="#FF56EE5D" Margin="5" Grid.ColumnSpan="4" Stroke="Black">
+            <Rectangle Grid.Row="1" Fill="Green" Margin="5" Grid.ColumnSpan="4" Stroke="Black">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonUp">
-                        <i:InvokeCommandAction Command="{Binding AircraftCarrierCommand}"/>
+                        <cmd:EventToCommand Command="{Binding AircraftCarrierCommand}" PassEventArgsToCommand="True"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Rectangle>
             <TextBlock Text="(1)" Grid.Row="1" Margin="5" Grid.Column="4" Foreground="White" />
 
             <TextBlock Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Pancernik" Foreground="White"/>
-            <Rectangle Name="BattleShipRect" Grid.Row="3" Fill="#FF56EE5D" Margin="5" Grid.ColumnSpan="3" Stroke="Black" />
+            <Rectangle Grid.Row="3" Fill="Green" Margin="5" Grid.ColumnSpan="3" Stroke="Black">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <cmd:EventToCommand Command="{Binding BattleShipCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Rectangle>
             <TextBlock Text="(2)" Grid.Row="3" Margin="5" Grid.Column="3" Foreground="White" />
 
             <TextBlock Grid.Row="4" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Krążownik" Foreground="White"/>
-            <Rectangle Name="CruiserRect" Grid.Row="5" Fill="#FF56EE5D" Margin="5" Grid.ColumnSpan="2" Stroke="Black" />
+            <Rectangle Grid.Row="5" Fill="Green" Margin="5" Grid.ColumnSpan="2" Stroke="Black">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <cmd:EventToCommand Command="{Binding CruiserCommand}" PassEventArgsToCommand="True"/>
+                        
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Rectangle>
             <TextBlock Text="(3)" Grid.Row="5" Margin="5" Grid.Column="2" Foreground="White" />
 
             <TextBlock Grid.Row="6" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Niszczyciel" Foreground="White"/>
-            <Rectangle Name="DestroyerRect" Grid.Row="7" Fill="#FF56EE5D" Margin="5" Grid.ColumnSpan="1" Stroke="Black" />
+            <Rectangle Grid.Row="7" Fill="Green" Margin="5" Grid.ColumnSpan="1" Stroke="Black">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <cmd:EventToCommand Command="{Binding DestroyerCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Rectangle>
             <TextBlock Text="(4)" Grid.Row="7" Margin="5" Grid.Column="1" Foreground="White" />
 
             <TextBlock Grid.Row="8" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Orientacja" Foreground="White"/>

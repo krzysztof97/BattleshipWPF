@@ -18,6 +18,7 @@ namespace BattleshipApp.ViewModels
     public class PlacementViewModel : ViewModelBase
     {
         private Type shipType;
+        private Rectangle selectedShip;
         private OrientationEnum orientation;
         public OrientationEnum Orientation
         {
@@ -31,16 +32,40 @@ namespace BattleshipApp.ViewModels
         public ICommand StartButtonCommand { get; set; }
         public ICommand PlaceShipCommand { get; set; }
         public ICommand AircraftCarrierCommand { get; set; }
+        public ICommand BattleShipCommand { get; set; }
+        public ICommand CruiserCommand { get; set; }
+        public ICommand DestroyerCommand { get; set; }
         public IEnumerable<OrientationEnum> OrientationEnums => Enum.GetValues(typeof(OrientationEnum)).Cast<OrientationEnum>();
         public PlacementViewModel()
         {
+            shipType = null;
             StartButtonCommand = new RelayCommand(StartGame);
             PlaceShipCommand = new RelayCommand<MouseButtonEventArgs>(PlaceShip);
-            AircraftCarrierCommand = new RelayCommand(() => 
-                {
-                    shipType = typeof(AircraftCarrier);
-                }
-            );
+            RegisterShipObjectCommands();
+        }
+
+        private void RegisterShipObjectCommands()
+        {
+            AircraftCarrierCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                shipType = typeof(AircraftCarrier);
+                selectedShip = (Rectangle)e.Source;
+                selectedShip.Fill = Brushes.LightGreen;
+            });
+            BattleShipCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                shipType = typeof(BattleShip);
+                selectedShip = (Rectangle)e.Source;
+                selectedShip.Fill = Brushes.LightGreen;
+            });
+            CruiserCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                shipType = typeof(Cruiser);
+                selectedShip = (Rectangle)e.Source;
+                selectedShip.Fill = Brushes.LightGreen;
+            });
+            DestroyerCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                shipType = typeof(Destroyer);
+                selectedShip = (Rectangle)e.Source;
+                selectedShip.Fill = Brushes.LightGreen;
+            });
         }
 
         public void StartGame()
@@ -53,20 +78,38 @@ namespace BattleshipApp.ViewModels
 
         public void PlaceShip(MouseButtonEventArgs e)
         {
+            if(shipType == null)
+            {
+                return;
+            }
+
             Grid grid = (Grid)e.Source;
             int colIndex, rowIndex;
             CalculateClickedCell(e, out colIndex, out rowIndex);
 
-            Rectangle ship = new Rectangle();
+            Ship ship = (Ship)Activator.CreateInstance(shipType, orientation);
 
-            ship.Fill = new SolidColorBrush(Colors.Green);
-            ship.SetValue(Grid.ColumnProperty, colIndex);
-            ship.SetValue(Grid.RowProperty, rowIndex);
+            Rectangle shipShape = new Rectangle();
+            shipShape.Fill = new SolidColorBrush(Colors.Green);
+            shipShape.SetValue(Grid.ColumnProperty, colIndex);
+            shipShape.SetValue(Grid.RowProperty, rowIndex);
+            shipShape.Margin = new Thickness(5);
 
-            grid.Children.Add(ship);
+            if(ship.Orientation == OrientationEnum.Vertical)
+            {
+                shipShape.SetValue(Grid.RowSpanProperty, ship.Size);
+            }
+            else
+            {
+                shipShape.SetValue(Grid.ColumnSpanProperty, ship.Size);
+            }
 
+            grid.Children.Add(shipShape);
 
-            MessageBox.Show($"col: {colIndex}  row: {rowIndex}");
+            shipType = null;
+            selectedShip.Fill = Brushes.Green;
+            selectedShip = null;
+            
         }
 
         private void CalculateClickedCell(MouseButtonEventArgs e, out int colIndex, out int rowIndex)

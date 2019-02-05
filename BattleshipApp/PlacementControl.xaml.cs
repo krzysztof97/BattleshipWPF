@@ -25,41 +25,6 @@ namespace BattleshipApp
         public PlacementControl()
         {
             InitializeComponent();
-            //PlacementGrid.MouseDown += new MouseButtonEventHandler(PlacementGridClick);
         }
-        private void PlacementGridClick(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton.ToString() != "Left")
-            {
-                return;
-            }
-            var point = Mouse.GetPosition(PlacementGrid);
-
-            int row = 0;
-            int col = 0;
-            double accumulatedHeight = 0.0;
-            double accumulatedWidth = 0.0;
-            
-            foreach (var rowDefinition in PlacementGrid.RowDefinitions)
-            {
-                accumulatedHeight += rowDefinition.ActualHeight;
-                if (accumulatedHeight >= point.Y)
-                    break;
-                row++;
-            }
-            
-            foreach (var columnDefinition in PlacementGrid.ColumnDefinitions)
-            {
-                accumulatedWidth += columnDefinition.ActualWidth;
-                if (accumulatedWidth >= point.X)
-                    break;
-                col++;
-            }
-
-            Console.WriteLine(row);
-            Console.WriteLine(col);
-        }
-        
-
     }
 }
