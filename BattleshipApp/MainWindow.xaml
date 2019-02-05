@@ -11,7 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="100">
             <Image HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="200" Source="Resources/logo.png"/>

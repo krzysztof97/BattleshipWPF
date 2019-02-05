@@ -1,5 +1,7 @@
 ﻿<UserControl 
     x:Class="BattleshipApp.PlacementControl"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  	
+    xmlns:cmd ="http://www.galasoft.ch/mvvmlight"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -32,7 +34,13 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Lotniskowiec" Foreground="White"/>
-            <Rectangle Name="AircraftCarrierRect" Grid.Row="1" Fill="#FF56EE5D" Margin="5" Grid.ColumnSpan="4" Stroke="Black" />
+            <Rectangle Grid.Row="1" Fill="#FF56EE5D" Margin="5" Grid.ColumnSpan="4" Stroke="Black">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding AircraftCarrierCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Rectangle>
             <TextBlock Text="(1)" Grid.Row="1" Margin="5" Grid.Column="4" Foreground="White" />
 
             <TextBlock Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Pancernik" Foreground="White"/>
@@ -48,9 +56,7 @@
             <TextBlock Text="(4)" Grid.Row="7" Margin="5" Grid.Column="1" Foreground="White" />
 
             <TextBlock Grid.Row="8" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="5"  Text="Orientacja" Foreground="White"/>
-            <ComboBox Name="OrientationBox" Grid.Row="9" Grid.ColumnSpan="5" HorizontalAlignment="Left" Margin="5,2,5,2" Width="120">
-                <ComboBoxItem Content="Poziomo"></ComboBoxItem>
-                <ComboBoxItem Content="Pionowo"></ComboBoxItem>
+            <ComboBox ItemsSource="{Binding OrientationEnums}" SelectedValue="{Binding Orientation, Mode=OneWayToSource}" SelectedIndex="0" Width="120" Grid.Row="9" Grid.ColumnSpan="5" HorizontalAlignment="Left" Margin="5,2,5,2">
             </ComboBox>
 
         </Grid>
@@ -79,6 +85,11 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonUp">
+                    <cmd:EventToCommand Command="{Binding PlaceShipCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </Grid>
 
         <Button Command="{Binding StartButtonCommand}" Foreground="White" FontSize="20" Content="Rozpocznij" Margin="600,125,50,125" Background="#2290A3" BorderThickness="0"/>

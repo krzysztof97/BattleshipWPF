@@ -25,7 +25,7 @@ namespace BattleshipApp
         public PlacementControl()
         {
             InitializeComponent();
-            PlacementGrid.MouseDown += new MouseButtonEventHandler(PlacementGridClick);
+            //PlacementGrid.MouseDown += new MouseButtonEventHandler(PlacementGridClick);
         }
         private void PlacementGridClick(object sender, MouseButtonEventArgs e)
         {
@@ -58,7 +58,6 @@ namespace BattleshipApp
 
             Console.WriteLine(row);
             Console.WriteLine(col);
-            Console.WriteLine(OrientationBox.SelectionBoxItem);
         }
         
 
