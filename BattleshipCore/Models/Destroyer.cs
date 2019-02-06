@@ -4,6 +4,7 @@ namespace BattleshipCore.Models {
             this.Size = 1;
             this.Name = "Niszczyciel";
             this.Orientation = orientation;
+            this.ShipCount = 4;
         }
     }
 }

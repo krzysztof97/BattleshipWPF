@@ -4,6 +4,7 @@ namespace BattleshipCore.Models {
             this.Size = 2;
             this.Name = "Krążownik";
             this.Orientation = orientation;
+            this.ShipCount = 3;
         }
     }
 }

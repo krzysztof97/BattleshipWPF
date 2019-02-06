@@ -4,6 +4,7 @@ namespace BattleshipCore.Models {
             this.Size = 4;
             this.Name = "Lotniskowiec";
             this.Orientation = orientation;
+            this.ShipCount = 1;
         }
     }
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="Models\AircraftCarrier.cs" />
+    <Compile Include="Models\BattleField.cs" />
     <Compile Include="Models\BattleShip.cs" />
     <Compile Include="Models\Cruiser.cs" />
     <Compile Include="Models\Destroyer.cs" />
