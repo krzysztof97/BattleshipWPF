@@ -41,15 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Armada.cs" />
+    <Compile Include="Logic2\HitPlacement.cs" />
+    <Compile Include="Logic2\ShipDestroyer.cs" />
+    <Compile Include="Models\HitValueEnum.cs" />
+    <Compile Include="Models\Players\AIAdmiral.cs" />
+    <Compile Include="Models\Players\User.cs" />
+    <Compile Include="Models\Ships\Armada.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Models\AircraftCarrier.cs" />
-    <Compile Include="Models\BattleField.cs" />
-    <Compile Include="Models\BattleShip.cs" />
-    <Compile Include="Models\Cruiser.cs" />
-    <Compile Include="Models\Destroyer.cs" />
-    <Compile Include="Models\OrientationEnum.cs" />
-    <Compile Include="Models\Ship.cs" />
+    <Compile Include="Models\Ships\AircraftCarrier.cs" />
+    <Compile Include="Models\Ships\BattleShip.cs" />
+    <Compile Include="Models\Ships\Cruiser.cs" />
+    <Compile Include="Models\Ships\Destroyer.cs" />
+    <Compile Include="Models\Ships\OrientationEnum.cs" />
+    <Compile Include="Models\Players\Player.cs" />
+    <Compile Include="Models\Ships\Ship.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
