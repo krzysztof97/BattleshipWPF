@@ -1,1 +1,4 @@
-all ships: implemented orientation properties!
+all ships: implemented orientation properties! Done :P
+implemented Ship Placement Logic: DONE!
+To Do: implemented Shoot Logic :P
+To Do: Implemented AI Logic

@@ -2,25 +2,29 @@ namespace BattleshipCore.Models
 {
     public class ShipPlacement
     {
-        BattleField gameField = new BattleField();
         Armada armada = new Armada();
 
-        public ShipPlacement(Ship ship, int xPos, int yPos)
+        public bool ShipDeploy(Ship ship, int xPos, int yPos)
         {
+            bool isDeploy = false;
+
             foreach (var aship in armada.Army)
             {
                 switch (ship.Orientation)
                 {
                     case OrientationEnum.Horizontal:
 
-                        if (IsFree(aship.XPos,aship.Size,xPos))
+                        if (IsFree(aship.XPos, aship.Size, xPos))
                         {
                             ship.XPos = xPos;
                             ship.YPos = yPos;
                             ship.ShipCount--;
                             armada.Army.Add(ship);
-                            gameField.ArrayField[xPos, yPos] = ship;
+
+                            isDeploy = true;
                         }
+                        else
+                            isDeploy = false;
                         break;
                     case OrientationEnum.Vertical:
 
@@ -30,8 +34,11 @@ namespace BattleshipCore.Models
                             ship.YPos = yPos;
                             ship.ShipCount--;
                             armada.Army.Add(ship);
-                            gameField.ArrayField[xPos, yPos] = ship;
+
+                            isDeploy = true;
                         }
+                        else
+                            isDeploy = false;
                         break;
                 }
 
@@ -41,6 +48,7 @@ namespace BattleshipCore.Models
             {
                 ship.Wisibility = false;
             }
+            return isDeploy;
         }
 
         private static bool IsFree(int min, int max, int value)
