@@ -1,6 +1,7 @@
 namespace BattleshipCore.Models {
     public class ShipPlacement {
-        public ShipPlacement (Ship ship, int xPos, int yPos) {
+        public ShipPlacement (Ship ship, int xPos, int yPos)
+        {
             BattleField gameField = new BattleField ();
             Armada armada = new Armada ();
 
