@@ -7,15 +7,13 @@ namespace BattleshipCore.Models
 
         public ShipPlacement(Ship ship, int xPos, int yPos)
         {
-
-
             foreach (var aship in armada.Army)
             {
                 switch (ship.Orientation)
                 {
                     case OrientationEnum.Horizontal:
 
-                        if (IsFree(aship.YPos,aship.Size,yPos))
+                        if (IsFree(aship.XPos,aship.Size,xPos))
                         {
                             ship.XPos = xPos;
                             ship.YPos = yPos;
@@ -26,7 +24,7 @@ namespace BattleshipCore.Models
                         break;
                     case OrientationEnum.Vertical:
 
-                        if (IsFree(aship.XPos, aship.Size, xPos))
+                        if (IsFree(aship.YPos, aship.Size, yPos))
                         {
                             ship.XPos = xPos;
                             ship.YPos = yPos;
