@@ -29,7 +29,7 @@ namespace BattleshipApp.ViewModels
                 this.RaisePropertyChanged("Orientation");
             }
         }
-        public ICommand StartButtonCommand { get; set; }
+        public ICommand StartBattleButtonCommand { get; set; }
         public ICommand PlaceShipCommand { get; set; }
         public ICommand AircraftCarrierCommand { get; set; }
         public ICommand BattleShipCommand { get; set; }
@@ -39,7 +39,7 @@ namespace BattleshipApp.ViewModels
         public PlacementViewModel()
         {
             shipType = null;
-            StartButtonCommand = new RelayCommand(StartGame);
+            StartBattleButtonCommand = new RelayCommand(StartBattle);
             PlaceShipCommand = new RelayCommand<MouseButtonEventArgs>(PlaceShip);
             RegisterShipObjectCommands();
         }
@@ -68,12 +68,12 @@ namespace BattleshipApp.ViewModels
             });
         }
 
-        public void StartGame()
+        public void StartBattle()
         {
             //TODO: sprawdzenie czy siatka uzupełniona
 
 
-            Messenger.Default.Send<string>("StartGame");
+            Messenger.Default.Send<string>("Placement:GoNext");
         }
 
         public void PlaceShip(MouseButtonEventArgs e)

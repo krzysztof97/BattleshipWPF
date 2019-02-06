@@ -25,6 +25,8 @@ namespace BattleshipApp.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<PlacementViewModel>();
+            SimpleIoc.Default.Register<BattleViewModel>();
+            SimpleIoc.Default.Register<WelcomeViewModel>();
         }
 
         public MainViewModel Main
@@ -40,6 +42,22 @@ namespace BattleshipApp.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<PlacementViewModel>();
+            }
+        }
+
+        public BattleViewModel Battle
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<BattleViewModel>();
+            }
+        }
+
+        public WelcomeViewModel Welcome
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<WelcomeViewModel>();
             }
         }
 

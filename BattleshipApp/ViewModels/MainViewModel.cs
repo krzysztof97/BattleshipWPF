@@ -11,7 +11,9 @@ namespace BattleshipApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private PlacementControl placementControl;
+        private PlacementControl placementControl; 
+        private WelcomeControl welcomeControl; 
+        private BattleControl battleControl; 
         private ObservableCollection<Control> mainContainer;
 
         public ObservableCollection<Control> MainContainer
@@ -28,7 +30,14 @@ namespace BattleshipApp.ViewModels
         {
             Messenger.Default.Register<string>(this, this.HandleMessage);
             MainContainer = new ObservableCollection<Control>() {  };
-            ShowPlacement();
+            ShowWelcome();
+        }
+
+        public void ShowWelcome()
+        {
+            welcomeControl = new WelcomeControl();
+            MainContainer.Clear();
+            MainContainer.Add(welcomeControl);
         }
 
         public void ShowPlacement()
@@ -38,19 +47,23 @@ namespace BattleshipApp.ViewModels
             MainContainer.Add(placementControl);
         }
 
-        private void StartGame()
+        private void StartBattle()
         {
+            battleControl = new BattleControl();
             MainContainer.Clear();
-            // TODO: ³adowanie widoku planszy z graniem
+            MainContainer.Add(battleControl);
         }
 
         private void HandleMessage(string message)
         {
             switch (message)
             {
-                case "StartGame":
-                    this.StartGame();
+                case "Placement:GoNext":
+                    this.StartBattle();
                  break;
+                case "Welcome:GoNext":
+                    this.ShowPlacement();
+                    break;
                 default:
                     break;
             }

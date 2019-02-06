@@ -111,7 +111,7 @@
             </i:Interaction.Triggers>
         </Grid>
 
-        <Button Command="{Binding StartButtonCommand}" Foreground="White" FontSize="20" Content="Rozpocznij" Margin="600,125,50,125" Background="#2290A3" BorderThickness="0"/>
+        <Button Command="{Binding StartBattleButtonCommand}" Foreground="White" FontSize="18" Content="Rozpocznij bitwę" Margin="600,125,50,125" Background="#2290A3" BorderThickness="0"/>
         <TextBlock HorizontalAlignment="Left" Foreground="White" Margin="555,25,0,0" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Top" Width="222"><Run Text="TIP: Wybierz orientację statku, "/><Run Text="wybierz "/><Run Text="statek, a następnie kliknij w punkt na mapie aby umieścić statek"/></TextBlock>
 
     </Grid>
