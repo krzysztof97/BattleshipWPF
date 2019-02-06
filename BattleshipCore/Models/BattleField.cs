@@ -8,11 +8,22 @@ namespace BattleshipCore.Models
 {
     class BattleField
     {
-        public static void ShipPlacement(Ship ship, int xPos, int yPos)
+        private bool isFree = true;
+        private readonly int width = 10;
+        private readonly int height = 10;
+        private Ship[,] arrayField;
+
+        public bool IsFree { get => isFree; set => isFree = value; }
+
+        public int Width => width;
+
+        public int Height => height;
+
+        public Ship[,] ArrayField { get => arrayField; set => arrayField = value; }
+
+        public BattleField()
         {
-            ship.XPos = xPos;
-            ship.YPos = yPos;
-            ship.ShipCount--;
+            ArrayField = new Ship[Width, Height];
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace BattleshipCore.Models
-{
-    public class Ship
-    {
+namespace BattleshipCore.Models {
+    public class Ship {
 
         private int size;
         private string name;
         private OrientationEnum orientation;
         private int shipCount;
+        private bool wisibility = true;
         private int xPos;
-        prive int yPos;
+        private int yPos;
+        private int live;
 
         public int Size { get => size; set => size = value; }
         public string Name { get => name; set => name = value; }
@@ -18,5 +18,8 @@ namespace BattleshipCore.Models
         public int ShipCount { get => shipCount; set => shipCount = value; }
         public int XPos { get => xPos; set => xPos = value; }
         public int YPos { get => yPos; set => yPos = value; }
+        public bool Wisibility { get => wisibility; set => wisibility = value; }
+        public int Live { get => live; set => live = value; }
+
     }
 }
