@@ -14,38 +14,25 @@ namespace BattleshipCore.Logic2
         public HitValueEnum IsHit { get => isHit; set => isHit = value; }
 
 
-        public HitPlacement(Armada armada, Ship ship, int xPos, int yPos)
+        public bool Placemen(Armada armada, Ship ship, int xPos, int yPos)
         {
+            bool hit = false;
             foreach (var aShip in armada.Army)
             {
-                if (IsFree(aShip.XPos, aShip.XPos + aShip.Size, xPos) && IsFree(aShip.YPos, aShip.YPos + aShip.Size, yPos))
+                if (aShip.XPos != xPos && aShip.YPos != yPos)
                 {
                     IsHit = HitValueEnum.Missed;
+                    hit = false;
                 }
                 else
                 {
                     IsHit = HitValueEnum.Hit;
                     shipDestroyer = new ShipDestroyer(armada, ship, IsHit);
+                    hit = true;
                 }
 
             }
-        }
-
-
-        public static bool IsFree(int min, int max, int value)
-        {
-            bool isFree = false;
-
-            for (int i = min; i < max; i++)
-            {
-                if (i == value)
-                {
-                    isFree = false;
-                }
-                else
-                    isFree = true;
-            }
-            return isFree;
+            return hit;
         }
     }
 }

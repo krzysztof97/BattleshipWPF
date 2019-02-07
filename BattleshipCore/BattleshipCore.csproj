@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Logic2\HitPlacement.cs" />
     <Compile Include="Logic2\ShipDestroyer.cs" />
+    <Compile Include="Models\Free.cs" />
     <Compile Include="Models\HitValueEnum.cs" />
     <Compile Include="Models\Players\AIAdmiral.cs" />
+    <Compile Include="Models\Players\AIRandoHit.cs" />
     <Compile Include="Models\Players\User.cs" />
     <Compile Include="Models\Ships\Armada.cs" />
     <Compile Include="Game.cs" />

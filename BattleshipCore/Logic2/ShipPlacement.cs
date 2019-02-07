@@ -14,7 +14,7 @@ namespace BattleshipCore.Models
                 {
                     case OrientationEnum.Horizontal:
 
-                        if (IsFree(aship.XPos, aship.XPos + aship.Size, xPos))
+                        if (Free.IsFree(aship.XPos, aship.XPos + aship.Size, xPos))
                         {
                             ship.XPos = xPos;
                             ship.YPos = yPos;
@@ -28,7 +28,7 @@ namespace BattleshipCore.Models
                         break;
                     case OrientationEnum.Vertical:
 
-                        if (IsFree(aship.YPos, aship.YPos + aship.Size, yPos))
+                        if (Free.IsFree(aship.YPos, aship.YPos + aship.Size, yPos))
                         {
                             ship.XPos = xPos;
                             ship.YPos = yPos;
@@ -51,20 +51,21 @@ namespace BattleshipCore.Models
             return isDeploy;
         }
 
-        public static bool IsFree(int min, int max, int value)
-        {
-            bool isFree = false;
+        //public static bool IsFree(int min, int max, int value)
+        //{
+        //    bool isFree = false;
 
-            for (int i = min; i < max; i++)
-            {
-                if (i == value)
-                {
-                    isFree = false;
-                }
-                else
-                    isFree = true;
-            }
-            return isFree;
+        //    for (int i = min; i < max; i++)
+        //    {
+        //        if (i == value)
+        //        {
+        //            isFree = false;
+        //        }
+        //        else
+        //            isFree = true;
+        //    }
+        //    return isFree;
         }
+
     }
 }
