@@ -10,7 +10,7 @@ namespace BattleshipCore.Models
     {
         public static bool IsFree(int min, int max, int value)
         {
-            bool isFree = false;
+            bool isFree = true;
 
             for (int i = min; i < max; i++)
             {
@@ -18,8 +18,6 @@ namespace BattleshipCore.Models
                 {
                     isFree = false;
                 }
-                else
-                    isFree = true;
             }
             return isFree;
         }

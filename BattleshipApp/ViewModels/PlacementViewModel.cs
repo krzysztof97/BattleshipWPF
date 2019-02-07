@@ -1,4 +1,5 @@
-﻿using BattleshipCore.Models;
+﻿using BattleshipCore;
+using BattleshipCore.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -19,6 +20,7 @@ namespace BattleshipApp.ViewModels
     {
         private Type shipType;
         private Rectangle selectedShip;
+        private Game gameEngine;
         private OrientationEnum orientation;
         public OrientationEnum Orientation
         {
@@ -36,8 +38,9 @@ namespace BattleshipApp.ViewModels
         public ICommand CruiserCommand { get; set; }
         public ICommand DestroyerCommand { get; set; }
         public IEnumerable<OrientationEnum> OrientationEnums => Enum.GetValues(typeof(OrientationEnum)).Cast<OrientationEnum>();
-        public PlacementViewModel()
+        public PlacementViewModel(Game _gameEngine)
         {
+            gameEngine = _gameEngine;
             shipType = null;
             StartBattleButtonCommand = new RelayCommand(StartBattle);
             PlaceShipCommand = new RelayCommand<MouseButtonEventArgs>(PlaceShip);
@@ -83,11 +86,23 @@ namespace BattleshipApp.ViewModels
                 return;
             }
 
+            if( !(e.Source is Grid) )
+            {
+                return;
+            }
+
             Grid grid = (Grid)e.Source;
             int colIndex, rowIndex;
             CalculateClickedCell(e, out colIndex, out rowIndex);
 
             Ship ship = (Ship)Activator.CreateInstance(shipType, orientation);
+            ship.XPos = colIndex;
+            ship.YPos = rowIndex;
+            
+            if(!gameEngine.ShipDeploy(ship))
+            {
+                return;
+            }
 
             Rectangle shipShape = new Rectangle();
             shipShape.Fill = new SolidColorBrush(Colors.Green);

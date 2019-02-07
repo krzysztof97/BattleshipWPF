@@ -2,11 +2,17 @@ namespace BattleshipCore.Models
 {
     public class ShipPlacement
     {
-        Armada armada = new Armada();
+        private Armada armada;
+        public Armada Armada => armada;
 
-        public bool ShipDeploy(Ship ship, int xPos, int yPos)
+        public ShipPlacement()
         {
-            bool isDeploy = false;
+            armada = new Armada();
+        }
+
+        public bool ShipDeploy(Ship ship)
+        {
+            bool isDeploy = true;
 
             foreach (var aship in armada.Army)
             {
@@ -14,57 +20,44 @@ namespace BattleshipCore.Models
                 {
                     case OrientationEnum.Horizontal:
 
-                        if (Free.IsFree(aship.XPos, aship.XPos + aship.Size, xPos))
+                        if (!Free.IsFree(aship.XPos, aship.XPos + aship.Size, ship.XPos))
                         {
-                            ship.XPos = xPos;
-                            ship.YPos = yPos;
-                            ship.ShipCount--;
-                            armada.Army.Add(ship);
 
-                            isDeploy = true;
-                        }
-                        else
                             isDeploy = false;
+                        }
                         break;
                     case OrientationEnum.Vertical:
 
-                        if (Free.IsFree(aship.YPos, aship.YPos + aship.Size, yPos))
+                        if (!Free.IsFree(aship.YPos, aship.YPos + aship.Size, ship.YPos))
                         {
-                            ship.XPos = xPos;
-                            ship.YPos = yPos;
-                            ship.ShipCount--;
-                            armada.Army.Add(ship);
-
-                            isDeploy = true;
-                        }
-                        else
                             isDeploy = false;
+                        }
                         break;
                 }
+            }
 
+            switch (ship.Orientation)
+            {
+                case OrientationEnum.Horizontal:
+                    if (ship.XPos + (ship.Size - 1) > 9) isDeploy = false;
+                    break;
+                case OrientationEnum.Vertical:
+                    if (ship.YPos + (ship.Size - 1) > 9) isDeploy = false;
+                    break;
+            }
+
+            if(isDeploy)
+            {
+                armada.Army.Add(ship);
+                ship.ShipCount--;
             }
 
             if (ship.ShipCount == 0)
             {
                 ship.Wisibility = false;
             }
+
             return isDeploy;
-        }
-
-        //public static bool IsFree(int min, int max, int value)
-        //{
-        //    bool isFree = false;
-
-        //    for (int i = min; i < max; i++)
-        //    {
-        //        if (i == value)
-        //        {
-        //            isFree = false;
-        //        }
-        //        else
-        //            isFree = true;
-        //    }
-        //    return isFree;
         }
 
     }

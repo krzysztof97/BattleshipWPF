@@ -1,3 +1,4 @@
+using BattleshipCore;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -15,6 +16,7 @@ namespace BattleshipApp.ViewModels
         private WelcomeControl welcomeControl; 
         private BattleControl battleControl; 
         private ObservableCollection<Control> mainContainer;
+        private Game gameEngine;
 
         public ObservableCollection<Control> MainContainer
         {
@@ -26,8 +28,9 @@ namespace BattleshipApp.ViewModels
             }
         }
 
-        public MainViewModel()
+        public MainViewModel(Game _gameEngine)
         {
+            gameEngine = _gameEngine;
             Messenger.Default.Register<string>(this, this.HandleMessage);
             MainContainer = new ObservableCollection<Control>() {  };
             ShowWelcome();
