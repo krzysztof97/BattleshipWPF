@@ -1,4 +1,5 @@
-﻿using BattleshipCore.Models;
+﻿using BattleshipCore.Logic2;
+using BattleshipCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,16 @@ namespace BattleshipCore
         {
             return shipPlacement.ShipDeploy(ship);
         }
-    }
+
+        public IEnumerable<Ship> Armada
+        {
+            get
+            {
+                foreach (Ship ship in shipPlacement.Armada.Army)
+                {
+                    yield return ship;
+                }
+            }
+        }
+}
 }
