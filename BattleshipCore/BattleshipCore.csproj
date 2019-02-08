@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic2\HitPlacement.cs" />
-    <Compile Include="Logic2\ShipDestroyer.cs" />
+    <Compile Include="Logic2\HitLogic\HitPlacement.cs" />
+    <Compile Include="Logic2\ShipLogic\ShipDestroyer.cs" />
     <Compile Include="Models\Free.cs" />
     <Compile Include="Models\HitValueEnum.cs" />
     <Compile Include="Models\Players\AIAdmiral.cs" />
-    <Compile Include="Models\Players\AIRandoHit.cs" />
+    <Compile Include="Models\Players\Hit\AIRandoHit.cs" />
+    <Compile Include="Models\Players\Hit\Hit.cs" />
+    <Compile Include="Models\Players\Hit\HitList.cs" />
     <Compile Include="Models\Players\User.cs" />
     <Compile Include="Models\Ships\Armada.cs" />
     <Compile Include="Game.cs" />
@@ -61,7 +63,7 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logic2\ShipPlacement.cs" />
+    <Compile Include="Logic2\ShipLogic\ShipPlacement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\toDo.txt" />
