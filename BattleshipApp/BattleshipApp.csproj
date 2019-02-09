@@ -75,6 +75,7 @@
     <Compile Include="BattleControl.xaml.cs">
       <DependentUpon>BattleControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GridHelpers.cs" />
     <Compile Include="ViewModels\BattleViewModel.cs" />
     <Compile Include="ViewModels\PlacementViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

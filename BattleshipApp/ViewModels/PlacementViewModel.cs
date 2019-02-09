@@ -1,4 +1,5 @@
-﻿using BattleshipCore;
+﻿using BattleshipApp.Helpers;
+using BattleshipCore;
 using BattleshipCore.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -146,7 +147,7 @@ namespace BattleshipApp.ViewModels
 
             Grid grid = (Grid)e.Source;
             int colIndex, rowIndex;
-            CalculateClickedCell(e, out colIndex, out rowIndex);
+            GridHelpers.CalculateClickedCell(e, out colIndex, out rowIndex);
 
             Ship ship = (Ship)Activator.CreateInstance(shipType, orientation);
             ship.XPos = colIndex;
@@ -190,31 +191,5 @@ namespace BattleshipApp.ViewModels
             shipType = null;
             
         }
-
-        private void CalculateClickedCell(MouseButtonEventArgs e, out int colIndex, out int rowIndex)
-        {
-            colIndex = 0; rowIndex = 0;
-            Grid grid = (Grid)e.Source;
-            Point relativeClickPosition = e.GetPosition(grid);
-
-            double accumulatedHeight = 0.0;
-            double accumulatedWidth = 0.0;
-
-            foreach (var column in grid.ColumnDefinitions)
-            {
-                accumulatedWidth += column.ActualWidth;
-                if (accumulatedWidth < relativeClickPosition.X)
-                    colIndex++;
-            }
-
-            foreach (var row in grid.RowDefinitions)
-            {
-                accumulatedHeight += row.ActualHeight;
-                if (accumulatedHeight < relativeClickPosition.Y)
-                    rowIndex++;
-            }
-        }
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using BattleshipCore;
+﻿using BattleshipApp.Helpers;
+using BattleshipCore;
 using BattleshipCore.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -23,6 +24,7 @@ namespace BattleshipApp.ViewModels
         private Game gameEngine;
         public List<Ship> ShipList;
         private ObservableCollection<Rectangle> playerGrid;
+        public ICommand HitShipCommand { get; set; }
 
         public ObservableCollection<Rectangle> PlayerGrid {
             get => playerGrid;
@@ -38,6 +40,8 @@ namespace BattleshipApp.ViewModels
             gameEngine = _gameEngine;
             ShipList = _gameEngine.Armada.ToList<Ship>();
             PlayerGrid = new ObservableCollection<Rectangle>();
+
+            HitShipCommand = new RelayCommand<MouseButtonEventArgs>(HitShip);
 
             ShowPlayerShips();
         }
@@ -66,6 +70,42 @@ namespace BattleshipApp.ViewModels
             }
 
         }
-        
+
+        private void HitShip(MouseButtonEventArgs e)
+        {
+            if (!(e.Source is Grid))
+            {
+                return;
+            }
+
+            Grid grid = (Grid)e.Source;
+            int colIndex, rowIndex;
+            GridHelpers.CalculateClickedCell(e, out colIndex, out rowIndex);
+
+            /* //SPRAWDZENIE CZY BYŁA JUŻ PRÓBA UDERZENIA W TO MIEJSCE
+            if()
+            {
+                return;
+            }
+            */
+
+            Rectangle hitShape = new Rectangle();
+            hitShape.SetValue(Grid.ColumnProperty, colIndex);
+            hitShape.SetValue(Grid.RowProperty, rowIndex);
+            hitShape.Margin = new Thickness(5);
+
+            if(true) // sprawdzenei czy statek trafiony
+            {
+                hitShape.Fill = new SolidColorBrush(Colors.DarkRed);
+            }
+            else
+            {
+                hitShape.Fill = new SolidColorBrush(Colors.Gray);
+            }
+            
+            grid.Children.Add(hitShape);
+            
+        }
+
     }
 }
