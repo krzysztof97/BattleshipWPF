@@ -50,21 +50,29 @@ namespace BattleshipApp.ViewModels
         private void RegisterShipObjectCommands()
         {
             AircraftCarrierCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                if(selectedShip != null)
+                    selectedShip.Fill = Brushes.Green;
                 shipType = typeof(AircraftCarrier);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
             });
             BattleShipCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                if (selectedShip != null)
+                    selectedShip.Fill = Brushes.Green;
                 shipType = typeof(BattleShip);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
             });
             CruiserCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                if (selectedShip != null)
+                    selectedShip.Fill = Brushes.Green;
                 shipType = typeof(Cruiser);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
             });
             DestroyerCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
+                if (selectedShip != null)
+                    selectedShip.Fill = Brushes.Green;
                 shipType = typeof(Destroyer);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
