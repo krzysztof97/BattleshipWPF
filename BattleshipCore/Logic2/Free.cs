@@ -6,92 +6,89 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models
 {
-    class Free : IComparable
+    class Free
     {
-        public static bool IsFree(Ship aship, Ship ship)
+        public static bool IsFree(Ship ship1, Ship ship2)
         {
-            bool isFree = true;
-
-
-            switch (aship.Orientation)
+            if(ship1.Orientation == OrientationEnum.Horizontal && ship2.Orientation == OrientationEnum.Horizontal)
             {
-                case OrientationEnum.Horizontal:
-                    for (int i = aship.XPos-1; i < (aship.XPos + aship.Size); i++)
-                    {
-                        for (int j = ship.XPos-1; j < (ship.XPos + ship.Size); j++)
-                        {
-                            if (i == j)
-                            {
-                                isFree = false;
-                            }
-                            else
-                                isFree = true;
-                        }
-                    }
-                    break;
-                case OrientationEnum.Vertical:
-                    for (int i = aship.YPos-1; i < (aship.YPos + aship.Size); i++)
-                    {
-                        for (int j = ship.YPos-1; j < (ship.YPos + ship.Size); j++)
-                        {
-                            if (i == j)
-                            {
-                                isFree = false;
-                            }
-                            else
-                                isFree = true;
-                        }
-                    }
-                    break;
+                return CheckBothHorizontal(ship1, ship2);
             }
-            switch (ship.Orientation)
+
+            if (ship1.Orientation == OrientationEnum.Vertical && ship2.Orientation == OrientationEnum.Vertical)
             {
-                case OrientationEnum.Horizontal:
-                    for (int i = aship.XPos-1; i < (aship.XPos + aship.Size); i++)
-                    {
-                        for (int j = ship.XPos-1; j < (ship.XPos + ship.Size); j++)
-                        {
-                            if (i == j)
-                            {
-                                isFree = false;
-                                break;
-                            }
-                            else
-                                isFree = true;
-                        }
-                    }
-                    break;
-                case OrientationEnum.Vertical:
-                    for (int i = aship.YPos-1; i < (aship.YPos + aship.Size); i++)
-                    {
-                        for (int j = ship.YPos-1; j < (ship.YPos + ship.Size); j++)
-                        {
-                            if (i == j)
-                            {
-                                isFree = false;
-                                break;
-                            }
-                            else
-                                isFree = true;
-                        }
-                    }
-                    break;
+                return CheckBothVertical(ship1, ship2);
             }
-            //for (int i = min; i < max; i++)
-            //{
-            //    if (i == value)
-            //    {
-            //        isFree = false;
-            //    }
-            //    else
-            //        isFree = true;
-            //}
-            return isFree;
+
+            if (ship1.Orientation == OrientationEnum.Horizontal && ship2.Orientation == OrientationEnum.Vertical)
+            {
+                return CheckHorizontalAndVertical(ship1, ship2);
+            }
+
+            if (ship1.Orientation == OrientationEnum.Vertical && ship2.Orientation == OrientationEnum.Horizontal)
+            {
+                return CheckHorizontalAndVertical(ship2, ship1);
+            }
+
+            return false;
         }
 
-        public int CompareTo(object obj)
+        private static bool CheckBothHorizontal(Ship ship1, Ship ship2)
         {
-            throw new NotImplementedException();
+            if (ship1.YPos != ship2.YPos)
+            {
+                return true;
+            }
+
+            for (int i = ship1.XPos; i < ship1.XPos + ship1.Size; i++)
+            {
+                for (int j = ship2.XPos; j < ship2.XPos + ship2.Size; j++)
+                {
+                    if(i == j)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private static bool CheckBothVertical(Ship ship1, Ship ship2)
+        {
+            if (ship1.XPos != ship2.XPos)
+            {
+                return true;
+            }
+
+            for (int i = ship1.YPos; i < ship1.YPos + ship1.Size; i++)
+            {
+                for (int j = ship2.YPos; j < ship2.YPos + ship2.Size; j++)
+                {
+                    if (i == j)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private static bool CheckHorizontalAndVertical(Ship shipH, Ship shipV)
+        {
+            for (int i = shipH.XPos; i < shipH.XPos + shipH.Size; i++)
+            {
+                for (int j = shipV.YPos; j < shipV.YPos + shipV.Size; j++)
+                {
+                    if (i == shipV.XPos && j == shipH.YPos)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
