@@ -20,7 +20,16 @@ namespace BattleshipCore
 
         public bool ShipDeploy(Ship ship)
         {
-            return shipPlacement.ShipDeploy(ship);
+            if (ShipsLeft[ship.GetType()] == 0)
+                return false;
+
+            if (shipPlacement.ShipDeploy(ship))
+            {
+                ShipsLeft[ship.GetType()]--;
+                return true;
+            }
+
+            return false;
         }
 
         public IEnumerable<Ship> Armada
@@ -33,5 +42,13 @@ namespace BattleshipCore
                 }
             }
         }
-}
+
+        public Dictionary<Type, int> ShipsLeft { get; private set; } = new Dictionary<Type, int>()
+        {
+            { typeof(AircraftCarrier), AircraftCarrier.ShipCount },
+            { typeof(BattleShip), BattleShip.ShipCount },
+            { typeof(Cruiser), Cruiser.ShipCount },
+            { typeof(Destroyer), Destroyer.ShipCount }
+        };
+    }
 }

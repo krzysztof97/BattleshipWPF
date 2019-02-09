@@ -80,7 +80,7 @@
                 <RotateTransform Angle="-90"/>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="791,104,-85,169" TextWrapping="Wrap" Text="Przeciwnik" Foreground="White" FontSize="20" Width="94">
+        <TextBlock HorizontalAlignment="Left" Margin="789,75,-144,198" TextWrapping="Wrap" Text="Admirał Bismarck" Foreground="White" FontSize="20" Width="155">
             <TextBlock.RenderTransform>
                 <RotateTransform Angle="90"/>
             </TextBlock.RenderTransform>

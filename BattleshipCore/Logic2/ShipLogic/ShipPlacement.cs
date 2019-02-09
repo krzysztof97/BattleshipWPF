@@ -35,12 +35,6 @@ namespace BattleshipCore.Models
             if (isDeploy)
             {
                 armada.Army.Add(ship);
-                ship.ShipCount--;
-            }
-
-            if (ship.ShipCount == 0)
-            {
-                ship.Wisibility = false;
             }
 
             return isDeploy;
