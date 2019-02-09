@@ -32,6 +32,21 @@ namespace BattleshipCore
             return false;
         }
 
+        public bool ShipDeployReady
+        {
+            get
+            {
+                foreach(var item in ShipsLeft)
+                {
+                    if (item.Value > 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
         public IEnumerable<Ship> Armada
         {
             get
