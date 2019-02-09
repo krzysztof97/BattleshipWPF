@@ -122,6 +122,11 @@ namespace BattleshipApp.ViewModels
         public void StartBattle()
         {
             //TODO: sprawdzenie czy siatka uzupełniona
+            if(!gameEngine.ShipDeployReady)
+            {
+                MessageBox.Show("Nie umieszczono wszystkich statków");
+                return;
+            }
 
 
             Messenger.Default.Send<string>("Placement:GoNext");
