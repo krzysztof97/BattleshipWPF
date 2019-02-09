@@ -6,7 +6,6 @@ namespace BattleshipCore.Models {
         private int size;
         private string name;
         private OrientationEnum orientation;
-        private int shipCount;
         private bool wisibility = true;
         private int xPos;
         private int yPos;
@@ -15,7 +14,6 @@ namespace BattleshipCore.Models {
         public int Size { get => size; set => size = value; }
         public string Name { get => name; set => name = value; }
         public OrientationEnum Orientation { get => orientation; set => orientation = value; }
-        public int ShipCount { get => shipCount; set => shipCount = value; }
         public int XPos { get => xPos; set => xPos = value; }
         public int YPos { get => yPos; set => yPos = value; }
         public bool Wisibility { get => wisibility; set => wisibility = value; }

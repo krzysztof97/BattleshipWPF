@@ -31,6 +31,11 @@ namespace BattleshipApp.ViewModels
                 this.RaisePropertyChanged("Orientation");
             }
         }
+        public int AircraftCarrierLeft => gameEngine.ShipsLeft[typeof(AircraftCarrier)];
+        public int BattleShipLeft => gameEngine.ShipsLeft[typeof(BattleShip)];
+        public int CruiserLeft => gameEngine.ShipsLeft[typeof(Cruiser)];
+        public int DestroyerLeft => gameEngine.ShipsLeft[typeof(Destroyer)];
+
         public ICommand StartBattleButtonCommand { get; set; }
         public ICommand PlaceShipCommand { get; set; }
         public ICommand AircraftCarrierCommand { get; set; }
@@ -51,28 +56,63 @@ namespace BattleshipApp.ViewModels
         {
             AircraftCarrierCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
                 if(selectedShip != null)
+                {
                     selectedShip.Fill = Brushes.Green;
+                    selectedShip = null;
+                }
+
+                if (gameEngine.ShipsLeft[typeof(AircraftCarrier)] == 0)
+                {
+                    return;
+                }
+
                 shipType = typeof(AircraftCarrier);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
             });
             BattleShipCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
                 if (selectedShip != null)
+                {
                     selectedShip.Fill = Brushes.Green;
+                    selectedShip = null;
+                }
+
+                if (gameEngine.ShipsLeft[typeof(BattleShip)] == 0)
+                {
+                    return;
+                }
                 shipType = typeof(BattleShip);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
             });
             CruiserCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
                 if (selectedShip != null)
+                    selectedShip.Fill = Brushes.Green; if (selectedShip != null)
+                {
                     selectedShip.Fill = Brushes.Green;
+                    selectedShip = null;
+                }
+
+                if (gameEngine.ShipsLeft[typeof(Cruiser)] == 0)
+                {
+                    return;
+                }
                 shipType = typeof(Cruiser);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
             });
             DestroyerCommand = new RelayCommand<MouseButtonEventArgs>((e) => {
                 if (selectedShip != null)
+                    selectedShip.Fill = Brushes.Green; if (selectedShip != null)
+                {
                     selectedShip.Fill = Brushes.Green;
+                    selectedShip = null;
+                }
+
+                if (gameEngine.ShipsLeft[typeof(Destroyer)] == 0)
+                {
+                    return;
+                }
                 shipType = typeof(Destroyer);
                 selectedShip = (Rectangle)e.Source;
                 selectedShip.Fill = Brushes.LightGreen;
@@ -89,7 +129,7 @@ namespace BattleshipApp.ViewModels
 
         public void PlaceShip(MouseButtonEventArgs e)
         {
-            if(shipType == null)
+            if(shipType == null || selectedShip == null)
             {
                 return;
             }
@@ -129,9 +169,20 @@ namespace BattleshipApp.ViewModels
 
             grid.Children.Add(shipShape);
 
-            shipType = null;
-            selectedShip.Fill = Brushes.Green;
+            this.RaisePropertyChanged("AircraftCarrierLeft");
+            this.RaisePropertyChanged("BattleShipLeft");
+            this.RaisePropertyChanged("CruiserLeft");
+            this.RaisePropertyChanged("DestroyerLeft");
+
+            if(gameEngine.ShipsLeft[ship.GetType()] == 0)
+            {
+                selectedShip.Fill = Brushes.Gray;
+            } else
+            {
+                selectedShip.Fill = Brushes.Green;
+            }
             selectedShip = null;
+            shipType = null;
             
         }
 
