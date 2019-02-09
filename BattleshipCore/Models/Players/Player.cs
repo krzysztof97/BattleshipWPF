@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models
 {
-    class Player
+    public class Player
     {
         private string name;
         private int wins;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models.Players.Hit
 {
-    public class Hit
+    public class HitMissle
     {
         private int xPos;
         private int yPos;

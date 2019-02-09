@@ -8,8 +8,8 @@ namespace BattleshipCore.Models.Players.Hit
 {
     class HitList
     {
-        private List<Hit> listOfHit = new List<Hit>();
+        private List<HitMissle> listOfHit = new List<HitMissle>();
 
-        public List<Hit> ListOfHit { get => listOfHit; set => listOfHit = value; }
+        public List<HitMissle> ListOfHit { get => listOfHit; set => listOfHit = value; }
     }
 }

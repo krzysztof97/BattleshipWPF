@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Logic2
 {
-    class HitPlacement
+    public class HitPlacement
     {
         HitValueEnum isHit;
         ShipDestroyer shipDestroyer;
@@ -16,7 +16,7 @@ namespace BattleshipCore.Logic2
         public HitValueEnum IsHit { get => isHit; set => isHit = value; }
 
 
-        public bool Placemen(Armada armada, Ship ship, Hit missle)
+        public bool Placemen(Armada armada, HitMissle missle)
         {
             bool hit = false;
             foreach (var bomb in hitList.ListOfHit)
@@ -33,7 +33,7 @@ namespace BattleshipCore.Logic2
                         else
                         {
                             IsHit = HitValueEnum.Hit;
-                            shipDestroyer = new ShipDestroyer(armada, ship, IsHit);
+                            shipDestroyer = new ShipDestroyer(armada, aShip, IsHit);
                             hit = true;
                         }
 

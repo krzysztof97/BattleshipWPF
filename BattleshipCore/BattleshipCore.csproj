@@ -44,11 +44,11 @@
     <Compile Include="Logic2\HitLogic\HitPlacement.cs" />
     <Compile Include="Logic2\ShipLogic\ShipDestroyer.cs" />
     <Compile Include="Logic2\Free.cs" />
-    <Compile Include="Models\Hit\HitValueEnum.cs" />
+    <Compile Include="Models\HitModel\HitValueEnum.cs" />
     <Compile Include="Models\Players\AIAdmiral.cs" />
     <Compile Include="Logic2\HitLogic\AIRandoHit.cs" />
-    <Compile Include="Models\Hit\Hit.cs" />
-    <Compile Include="Models\Hit\HitList.cs" />
+    <Compile Include="Models\HitModel\HitMissle.cs" />
+    <Compile Include="Models\HitModel\HitList.cs" />
     <Compile Include="Models\Players\User.cs" />
     <Compile Include="Models\Ships\Armada.cs" />
     <Compile Include="Game.cs" />

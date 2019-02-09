@@ -8,12 +8,12 @@ namespace BattleshipCore.Models.Players
 {
     class AIRandoHit
     {
-        public int AIRandoHi(int gridLow, int gridMax)
+        public int AIRandoHi()
         {
             int valuve;
             Random rand = new Random();
 
-            valuve = rand.Next(gridLow, gridMax);
+            valuve = rand.Next(0, 9);
 
             return valuve;
 
