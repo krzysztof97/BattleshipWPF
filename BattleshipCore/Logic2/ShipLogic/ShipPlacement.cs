@@ -16,10 +16,24 @@ namespace BattleshipCore.Models
 
             foreach (var aship in armada.Army)
             {
-                if (!Free.IsFreeShip(aship, ship.XPos, ship.YPos))
+                switch (ship.Orientation)
                 {
-                    isDeploy = false;
-                } 
+                    case OrientationEnum.Horizontal:
+
+                        if (!Free.IsFree(aship.XPos, aship.XPos + aship.Size, ship.XPos))
+                        {
+
+                            isDeploy = false;
+                        }
+                        break;
+                    case OrientationEnum.Vertical:
+
+                        if (!Free.IsFree(aship.YPos, aship.YPos + aship.Size, ship.YPos))
+                        {
+                            isDeploy = false;
+                        }
+                        break;
+                }
             }
 
             switch (ship.Orientation)
@@ -36,7 +50,6 @@ namespace BattleshipCore.Models
             {
                 armada.Army.Add(ship);
             }
-
             return isDeploy;
         }
 

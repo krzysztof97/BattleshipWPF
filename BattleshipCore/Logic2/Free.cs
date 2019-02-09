@@ -8,26 +8,9 @@ namespace BattleshipCore.Models
 {
     class Free
     {
-        public static bool IsFreeShip(Ship ship, int valueX, int valueY)
+        public static bool IsFree(int min, int max, int value)
         {
-            int min = 0;
-            int max = ship.Size;
-            int value=0;
-
             bool isFree = true;
-
-            switch (ship.Orientation)
-            {
-                case OrientationEnum.Horizontal:
-                    min = ship.XPos;
-                    value = valueX;
-                    break;
-                case OrientationEnum.Vertical:
-                    min = ship.YPos;
-                    value = valueY;
-                    break;
-            }
-
 
             for (int i = min; i < max; i++)
             {
@@ -35,8 +18,11 @@ namespace BattleshipCore.Models
                 {
                     isFree = false;
                 }
+                else
+                    isFree = true;
             }
             return isFree;
-        }      
+        }
+
     }
 }

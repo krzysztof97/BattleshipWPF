@@ -25,17 +25,17 @@ namespace BattleshipCore.Logic2
                 {
                     foreach (var aShip in armada.Army)
                     {
-                        if (Free.IsFreeShip(aShip, missle.XPos, missle.YPos))
-                        {
-                            IsHit = HitValueEnum.Missed;
-                            hit = false;
-                        }
-                        else
-                        {
-                            IsHit = HitValueEnum.Hit;
-                            shipDestroyer = new ShipDestroyer(armada, aShip, IsHit);
-                            hit = true;
-                        }
+                        //if (Free.IsFree(aShip., missle.XPos, missle.YPos))
+                        //{
+                        //    IsHit = HitValueEnum.Missed;
+                        //    hit = false;
+                        //}
+                        //else
+                        //{
+                        //    IsHit = HitValueEnum.Hit;
+                        //    shipDestroyer = new ShipDestroyer(armada, aShip, IsHit);
+                        //    hit = true;
+                        //}
 
                     }
                     hitList.ListOfHit.Add(missle);
