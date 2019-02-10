@@ -10,8 +10,10 @@ namespace BattleshipCore.Models.Players.Hit
     {
         private int xPos;
         private int yPos;
+        HitValueEnum isHit;
 
         public int XPos { get => xPos; set => xPos = value; }
         public int YPos { get => yPos; set => yPos = value; }
+        public HitValueEnum IsHit { get => isHit; set => isHit = value; }
     }
 }

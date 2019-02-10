@@ -8,7 +8,7 @@ namespace BattleshipCore.Models
 {
     public enum HitValueEnum
     {
-        Hit,
+        Hitted,
         Missed,
     }
 }
