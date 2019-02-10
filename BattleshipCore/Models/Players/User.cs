@@ -20,12 +20,13 @@ namespace BattleshipCore.Models.Players
         public Armada Armada { get => armada; set => armada = value; }
         public AIAdmiral Admiral { get => admiral; set => admiral = value; }
 
-        public User(string name, AIAdmiral admiral)
+        public User(string name, AIAdmiral admiral, Armada armada)
         {
             this.Name = name;
             this.Wins = 0;
             this.Turn = true;
             this.Admiral = admiral;
+            this.Armada = armada;
         }
         public void MisslePush( int xPos, int yPos)
         {
