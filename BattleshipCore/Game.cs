@@ -15,6 +15,7 @@ namespace BattleshipCore
         private User user;
         private AIAdmiral aiAdmiral;
         public int testint = 1;
+        public HitValueEnum LastUserHitMissleState;
 
         public Game()
         {
@@ -73,7 +74,11 @@ namespace BattleshipCore
 
         public bool HitShip(int xPos, int yPos)
         {
-            return user.MisslePush(xPos, yPos);
+            if (user.MisslePush(xPos, yPos)) {
+                LastUserHitMissleState = user.LastHitMissleState;
+                return true;
+            }
+            return false;
         }
     }
 }

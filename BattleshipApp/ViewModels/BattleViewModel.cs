@@ -82,19 +82,17 @@ namespace BattleshipApp.ViewModels
             int colIndex, rowIndex;
             GridHelpers.CalculateClickedCell(e, out colIndex, out rowIndex);
 
-            /* //SPRAWDZENIE CZY BYŁA JUŻ PRÓBA UDERZENIA W TO MIEJSCE
-            if()
+            if(!gameEngine.HitShip(colIndex, rowIndex))
             {
                 return;
             }
-            */
 
             Rectangle hitShape = new Rectangle();
             hitShape.SetValue(Grid.ColumnProperty, colIndex);
             hitShape.SetValue(Grid.RowProperty, rowIndex);
             hitShape.Margin = new Thickness(5);
 
-            if(gameEngine.HitShip(colIndex, rowIndex)) // sprawdzenei czy statek trafiony
+            if(gameEngine.LastUserHitMissleState == HitValueEnum.Hitted) // sprawdzenei czy statek trafiony
             {
                 hitShape.Fill = new SolidColorBrush(Colors.DarkRed);
             }

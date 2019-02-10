@@ -19,6 +19,7 @@ namespace BattleshipCore.Models.Players
         public HitList HitList { get => hitList; set => hitList = value; }
         public Armada Armada { get => armada; set => armada = value; }
         public AIAdmiral Admiral { get => admiral; set => admiral = value; }
+        public HitValueEnum LastHitMissleState;
 
         public User(string name, AIAdmiral admiral, Armada armada)
         {
@@ -36,7 +37,7 @@ namespace BattleshipCore.Models.Players
                 int valueY = yPos;
                 HitMissle missle = new HitMissle(valueX, valueY);
                 bool isHit = HitPlacement.Placemen(Armada, missle, HitList);
-
+                LastHitMissleState = missle.IsHit;
 
                 switch (missle.IsHit)
                 {
