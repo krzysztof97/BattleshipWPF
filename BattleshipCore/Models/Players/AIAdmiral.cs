@@ -16,15 +16,18 @@ namespace BattleshipCore.Models.Players
         HitList hitList = new HitList();
         AIRandoHit randomHit = new AIRandoHit();
         Armada armada;
+        User user;
         internal HitPlacement HitPlacement { get => hitPlacement; set => hitPlacement = value; }
         public HitList HitList { get => hitList; set => hitList = value; }
         public Armada Armada { get => armada; set => armada = value; }
+        public User User { get => user; set => user = value; }
 
-        public AIAdmiral()
+        public AIAdmiral(User user)
         {
             this.Name = "Admirał Bismarck";
             this.Wins = 0;
             this.Turn = false;
+            this.User = user;
         }
 
 
@@ -45,6 +48,7 @@ namespace BattleshipCore.Models.Players
                         break;
                     case HitValueEnum.Missed:
                         Turn = false;
+                        User.Turn = true;
                         break;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using BattleshipCore.Logic2;
 using BattleshipCore.Models;
+using BattleshipCore.Models.Players;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,15 @@ namespace BattleshipCore
     public class Game
     {
         private ShipPlacement shipPlacement;
+        private User user;
+        private AIAdmiral aiAdmiral;
         public int testint = 1;
 
         public Game()
         {
             shipPlacement = new ShipPlacement();
+            user = new User("Gracz", aiAdmiral, shipPlacement.Armada);
+            aiAdmiral = new AIAdmiral(user);
         }
 
         public bool ShipDeploy(Ship ship)
