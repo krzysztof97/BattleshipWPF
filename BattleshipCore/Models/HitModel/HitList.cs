@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models.Players.Hit
 {
-    class HitList
+    public class HitList
     {
         private List<HitMissle> listOfHit = new List<HitMissle>();
 

@@ -15,5 +15,12 @@ namespace BattleshipCore.Models.Players.Hit
         public int XPos { get => xPos; set => xPos = value; }
         public int YPos { get => yPos; set => yPos = value; }
         public HitValueEnum IsHit { get => isHit; set => isHit = value; }
+
+        public HitMissle(int xPos, int yPos)
+        {
+            this.XPos = xPos;
+            this.YPos = yPos;
+
+        }
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models.Players
 {
-    class AIRandoHit
+    public class AIRandoHit
     {
+        
         public int AIRandoHi()
         {
             int valuve;

@@ -11,10 +11,9 @@ namespace BattleshipCore.Logic2
     public class HitPlacement
     {
         ShipDestroyer shipDestroyer;
-        HitList hitList = new HitList();
 
 
-        public bool Placemen(Armada armada, HitMissle missle)
+        public bool Placemen(Armada armada, HitMissle missle, HitList hitList)
         {
             bool hit = false;
             foreach (var bomb in hitList.ListOfHit)
