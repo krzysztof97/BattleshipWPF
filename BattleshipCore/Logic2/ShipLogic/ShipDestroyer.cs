@@ -1,4 +1,5 @@
 ﻿using BattleshipCore.Models;
+using BattleshipCore.Models.Players.Hit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace BattleshipCore.Logic2
         string message;
         public string Message { get => message; set => message = value; }
 
-        public ShipDestroyer(Armada armada, Ship ship, HitValueEnum hitValueEnum)
+        public ShipDestroyer(Armada armada, Ship ship, HitMissle missle)
         {
-            if (hitValueEnum == HitValueEnum.Hit)
+            if (missle.IsHit == HitValueEnum.Hitted)
             {
                 ship.Live--;
 

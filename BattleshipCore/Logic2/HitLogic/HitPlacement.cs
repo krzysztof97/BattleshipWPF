@@ -10,8 +10,6 @@ namespace BattleshipCore.Logic2
 {
     public class HitPlacement
     {
-        ShipDestroyer shipDestroyer;
-
 
         public bool Placemen(Armada armada, HitMissle missle, HitList hitList)
         {
