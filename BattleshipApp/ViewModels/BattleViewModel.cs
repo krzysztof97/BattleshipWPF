@@ -94,7 +94,7 @@ namespace BattleshipApp.ViewModels
             hitShape.SetValue(Grid.RowProperty, rowIndex);
             hitShape.Margin = new Thickness(5);
 
-            if(true) // sprawdzenei czy statek trafiony
+            if(gameEngine.HitShip(colIndex, rowIndex)) // sprawdzenei czy statek trafiony
             {
                 hitShape.Fill = new SolidColorBrush(Colors.DarkRed);
             }

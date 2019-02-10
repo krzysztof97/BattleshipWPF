@@ -70,5 +70,10 @@ namespace BattleshipCore
             { typeof(Cruiser), Cruiser.ShipCount },
             { typeof(Destroyer), Destroyer.ShipCount }
         };
+
+        public bool HitShip(int xPos, int yPos)
+        {
+            return user.MisslePush(xPos, yPos);
+        }
     }
 }

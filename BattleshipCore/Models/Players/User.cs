@@ -28,14 +28,14 @@ namespace BattleshipCore.Models.Players
             this.Admiral = admiral;
             this.Armada = armada;
         }
-        public void MisslePush( int xPos, int yPos)
+        public bool MisslePush(int xPos, int yPos)
         {
             if (Turn)
             {
                 int valueX = xPos;
                 int valueY = yPos;
                 HitMissle missle = new HitMissle(valueX, valueY);
-                HitPlacement.Placemen(Armada, missle, HitList);
+                bool isHit = HitPlacement.Placemen(Armada, missle, HitList);
 
 
                 switch (missle.IsHit)
@@ -48,7 +48,9 @@ namespace BattleshipCore.Models.Players
                         Admiral.Turn = true;
                         break;
                 }
+                return isHit;
             }
+            return false;
 
         }
 
