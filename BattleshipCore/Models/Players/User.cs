@@ -36,7 +36,7 @@ namespace BattleshipCore.Models.Players
                 int valueX = xPos;
                 int valueY = yPos;
                 HitMissle missle = new HitMissle(valueX, valueY);
-                bool isHit = HitPlacement.Placemen(Armada, missle, HitList);
+                bool isHit = HitPlacement.Placemen(Armada, ref missle, HitList);
                 LastHitMissleState = missle.IsHit;
 
                 switch (missle.IsHit)

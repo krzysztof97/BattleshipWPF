@@ -11,63 +11,90 @@ namespace BattleshipCore.Logic2
     public class HitPlacement
     {
 
-        public bool Placemen(Armada armada, HitMissle missle, HitList hitList)
+        public bool Placemen(Armada armada, ref HitMissle missle, HitList hitList)
         {
-            bool hit = false;
+            bool hit = true;
             foreach (var bomb in hitList.ListOfHit)
             {
-                if (!(bomb.XPos == missle.XPos) || !(bomb.YPos == missle.YPos))
+                if (!(bomb.XPos == missle.XPos) && !(bomb.YPos == missle.YPos))
                 {
-                    foreach (var aship in armada.Army)
+                    hit = true;
+                    foreach (var ship in armada.Army)
                     {
-                        switch (aship.Orientation)
+                        switch (ship.Orientation)
                         {
-                            case OrientationEnum.Horizontal:
-                                if (aship.YPos != missle.YPos)
+                            case (OrientationEnum.Horizontal):
+                                if (ship.YPos != missle.YPos)
                                 {
-                                    hit = true;
-                                    break;
                                     missle.IsHit = HitValueEnum.Missed;
-
                                 }
-                                for (int i = aship.XPos; i < aship.XPos + aship.Size; i++)
+                                for (int i = ship.XPos; i < ship.XPos + ship.Size; i++)
                                 {
                                     if (i == missle.XPos)
                                     {
-                                        hit = true;
                                         missle.IsHit = HitValueEnum.Hitted;
                                     }
                                     else
                                         missle.IsHit = HitValueEnum.Missed;
                                 }
-                                break;
-                            case OrientationEnum.Vertical:
-                                if (aship.XPos != missle.XPos)
-                                {
-                                    hit = true;
-                                    missle.IsHit = HitValueEnum.Missed;
                                     break;
+                            case (OrientationEnum.Vertical):
+                                if (ship.XPos != missle.XPos)
+                                {
+                                    missle.IsHit = HitValueEnum.Missed;
                                 }
-                                for (int i = aship.YPos; i < aship.YPos + aship.Size; i++)
+                                for (int i = ship.YPos; i < ship.YPos + ship.Size; i++)
                                 {
                                     if (i == missle.YPos)
                                     {
-                                        hit = true;
-                                        missle.IsHit = HitValueEnum.Missed;
+                                        missle.IsHit = HitValueEnum.Hitted;
                                     }
                                     else
                                         missle.IsHit = HitValueEnum.Missed;
                                 }
-                                break;
+                                    break;
                         }
 
                     }
                     hitList.ListOfHit.Add(missle);
                 }
                 else
-                    hit=false;
+                    hit = false;
             }
             return hit;
         }
+
+        //public void Horizontal(Ship ship, HitMissle missle)
+        //{
+        //    if (ship.YPos != missle.YPos)
+        //    {
+        //        missle.IsHit = HitValueEnum.Missed;
+        //    }
+        //    for (int i = ship.XPos; i < ship.XPos + ship.Size; i++)
+        //    {
+        //        if (i == missle.XPos)
+        //        {
+        //            missle.IsHit = HitValueEnum.Hitted;
+        //        }
+        //        else
+        //            missle.IsHit = HitValueEnum.Missed;
+        //    }
+        //}
+        //public void Vertical(Ship ship, HitMissle missle)
+        //{
+        //    if (ship.XPos != missle.XPos)
+        //    {
+        //        missle.IsHit = HitValueEnum.Missed;
+        //    }
+        //    for (int i = ship.YPos; i < ship.YPos + ship.Size; i++)
+        //    {
+        //        if (i == missle.YPos)
+        //        {
+        //            missle.IsHit = HitValueEnum.Hitted;
+        //        }
+        //        else
+        //            missle.IsHit = HitValueEnum.Missed;
+        //    }
+        
     }
 }

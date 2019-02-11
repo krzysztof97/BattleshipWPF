@@ -9,6 +9,8 @@ namespace BattleshipCore.Logic2.ShipLogic
 {
     class RandomShipPlacement
     {
+        Armada armada;
+
         public Dictionary<Type, int> ShipsLeft { get; private set; } = new Dictionary<Type, int>()
         {
             { typeof(AircraftCarrier), AircraftCarrier.ShipCount },
@@ -16,5 +18,6 @@ namespace BattleshipCore.Logic2.ShipLogic
             { typeof(Cruiser), Cruiser.ShipCount },
             { typeof(Destroyer), Destroyer.ShipCount }
         };
+        public Armada Armada { get => armada; set => armada = value; }
     }
 }
