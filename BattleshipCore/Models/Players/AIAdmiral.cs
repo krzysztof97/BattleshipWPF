@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BattleshipCore.Models.Players;
 using BattleshipCore.Models.Players.Hit;
+using BattleshipCore.Logic2.ShipLogic;
 
 namespace BattleshipCore.Models.Players
 {
@@ -28,6 +29,7 @@ namespace BattleshipCore.Models.Players
             this.Wins = 0;
             this.Turn = false;
             this.User = user;
+            GenerateArmada();
         }
 
 
@@ -53,6 +55,12 @@ namespace BattleshipCore.Models.Players
                 }
             }
 
+        }
+
+        public void GenerateArmada()
+        {
+            RandomShipPlacement rsp = new RandomShipPlacement();
+            this.Armada = rsp.Armada;
         }
 
     }

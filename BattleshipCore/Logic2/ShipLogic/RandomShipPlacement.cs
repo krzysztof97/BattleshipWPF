@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Logic2.ShipLogic
 {
-    class RandomShipPlacement
+    public class RandomShipPlacement
     {
         Armada armada;
 
-        public Dictionary<Type, int> ShipsLeft { get; private set; } = new Dictionary<Type, int>()
+        public Dictionary<Type, int> ShipsQuantity { get; private set; } = new Dictionary<Type, int>()
         {
             { typeof(AircraftCarrier), AircraftCarrier.ShipCount },
             { typeof(BattleShip), BattleShip.ShipCount },
@@ -19,5 +19,37 @@ namespace BattleshipCore.Logic2.ShipLogic
             { typeof(Destroyer), Destroyer.ShipCount }
         };
         public Armada Armada { get => armada; set => armada = value; }
+
+        public RandomShipPlacement()
+        {
+            GenerateArmada();
+        }
+
+        private void GenerateArmada()
+        {
+            Random rnd = new Random();
+            ShipPlacement shipPlacement = new ShipPlacement();
+
+            foreach (var left in ShipsQuantity)
+            {
+                for(int i = 0; i < left.Value; i++)
+                {
+                    bool success;
+                    do
+                    {
+                        OrientationEnum orientation = (rnd.Next() % 2 == 0) ? OrientationEnum.Horizontal : OrientationEnum.Vertical;
+                        Ship ship = (Ship)Activator.CreateInstance(left.Key, orientation);
+                        ship.XPos = rnd.Next(10);
+                        ship.YPos = rnd.Next(10);
+
+                        success = shipPlacement.ShipDeploy(ship);
+
+
+                    } while (!success);
+                }
+            }
+
+            armada = shipPlacement.Armada;
+        }
     }
 }

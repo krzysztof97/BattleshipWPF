@@ -53,11 +53,28 @@ namespace BattleshipCore
             }
         }
 
+        /// <summary>
+        /// Users' ship navy
+        /// </summary>
         public IEnumerable<Ship> Armada
         {
             get
             {
-                foreach (Ship ship in shipPlacement.Armada.Army)
+                foreach (Ship ship in user.Armada.Army)
+                {
+                    yield return ship;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Opponent's(Admiral's) ship navy
+        /// </summary>
+        public IEnumerable<Ship> OpponentArmada
+        {
+            get
+            {
+                foreach (Ship ship in aiAdmiral.Armada.Army)
                 {
                     yield return ship;
                 }

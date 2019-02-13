@@ -23,7 +23,9 @@ namespace BattleshipApp.ViewModels
     {
         private Game gameEngine;
         public List<Ship> ShipList;
+        public List<Ship> OpponentShipList;
         private ObservableCollection<Rectangle> playerGrid;
+        private ObservableCollection<Rectangle> opponentGrid;
         public ICommand HitShipCommand { get; set; }
 
         public ObservableCollection<Rectangle> PlayerGrid {
@@ -34,21 +36,33 @@ namespace BattleshipApp.ViewModels
                 this.RaisePropertyChanged("PlayerGrid");
             }
         }
+        public ObservableCollection<Rectangle> OpponentGrid
+        {
+            get => opponentGrid;
+            set
+            {
+                opponentGrid = value;
+                this.RaisePropertyChanged("OpponentGrid");
+            }
+        }
 
         public BattleViewModel(Game _gameEngine)
         {
             gameEngine = _gameEngine;
             ShipList = _gameEngine.Armada.ToList<Ship>();
+            OpponentShipList = _gameEngine.OpponentArmada.ToList<Ship>();
             PlayerGrid = new ObservableCollection<Rectangle>();
+            OpponentGrid = new ObservableCollection<Rectangle>();
 
             HitShipCommand = new RelayCommand<MouseButtonEventArgs>(HitShip);
 
-            ShowPlayerShips();
+            ShowShips(ShipList, PlayerGrid);
+            ShowShips(OpponentShipList, OpponentGrid);
         }
 
-        private void ShowPlayerShips()
+        private void ShowShips(List<Ship> list, ObservableCollection<Rectangle> grid)
         {
-            foreach(Ship ship in ShipList)
+            foreach(Ship ship in list)
             {
                 Rectangle shipShape = new Rectangle();
                 shipShape.Fill = new SolidColorBrush(Colors.Green);
@@ -65,7 +79,7 @@ namespace BattleshipApp.ViewModels
                     shipShape.SetValue(Grid.ColumnSpanProperty, ship.Size);
                 }
                 
-                PlayerGrid.Add(shipShape);
+                grid.Add(shipShape);
                 Console.WriteLine(ship.Name);
             }
 
