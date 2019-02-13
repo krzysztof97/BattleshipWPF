@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models.Players
 {
-    
+
     public class User : Player
     {
         HitPlacement hitPlacement = new HitPlacement();
@@ -35,11 +35,10 @@ namespace BattleshipCore.Models.Players
             {
                 int valueX = xPos;
                 int valueY = yPos;
-                HitMissle missle = new HitMissle(valueX, valueY);
-                bool isHit = HitPlacement.Placemen(Armada, ref missle, HitList);
-                LastHitMissleState = missle.IsHit;
+                bool isHit = HitPlacement.Placemen(Armada, HitList, valueX, valueY);
+                LastHitMissleState = HitPlacement.Missle.IsHit;
 
-                switch (missle.IsHit)
+                switch (HitPlacement.Missle.IsHit)
                 {
                     case HitValueEnum.Hitted:
                         Turn = true;

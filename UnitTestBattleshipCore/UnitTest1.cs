@@ -76,7 +76,7 @@ namespace UnitTestBattleshipCore
             ShipPlacement shipPla = new ShipPlacement();
 
             shipPla.ShipDeploy(ship);
-            hitPla.Placemen(shipPla.Armada,ref  missle, hitList);
+            hitPla.Placemen(shipPla.Armada, hitList, x, y);
             Assert.IsTrue(true);
         }
 
@@ -86,9 +86,32 @@ namespace UnitTestBattleshipCore
         [DataRow(10, 0, 10, 0)]
         [DataRow(1, 2, 1, 2)]
         [DataRow(5, 8, 5, 8)]
-        [DataRow(0, 0, 5, 8)]
+        [DataRow(0, 0, 0, 0)]
         [DataRow(10, 10, 10, 10)]
         public void HitPlacementTest2(int x, int y, int sX, int sY)
+        {
+            HitList hitList = new HitList();
+            Ship ship = new Ship();
+            HitPlacement hitPla = new HitPlacement();
+            ShipPlacement shipPla = new ShipPlacement();
+            ship.XPos = sX;
+            ship.YPos = sY;
+            ship.Orientation = OrientationEnum.Horizontal;
+            shipPla.ShipDeploy(ship);
+            hitPla.Placemen(shipPla.Armada, hitList, x, y);
+
+
+            Assert.Equals(hitPla.IsHit, HitValueEnum.Hitted);
+        }
+        [TestMethod]
+        [DataRow(2, 3, 3, 3)]
+        [DataRow(4, 8, 4, 4)]
+        [DataRow(10, 0, 8, 0)]
+        [DataRow(1, 2, 8, 2)]
+        [DataRow(5, 8, 1, 8)]
+        [DataRow(0, 0, 5, 8)]
+        [DataRow(3, 10, 10, 10)]
+        public void HitPlacementTest3(int x, int y, int sX, int sY)
         {
             HitMissle missle = new HitMissle(x, y);
             HitList hitList = new HitList();
@@ -99,10 +122,10 @@ namespace UnitTestBattleshipCore
             ship.YPos = sY;
             ship.Orientation = OrientationEnum.Horizontal;
             shipPla.ShipDeploy(ship);
-            hitPla.Placemen(shipPla.Armada, ref missle, hitList);
+            hitPla.Placemen(shipPla.Armada, hitList, x, y);
 
 
-            Assert.Equals(missle.IsHit, HitValueEnum.Hitted);
+            Assert.Equals(hitPla.IsHit, HitValueEnum.Missed);
         }
 
         [TestMethod]
@@ -113,9 +136,8 @@ namespace UnitTestBattleshipCore
         [DataRow(5, 8, 5, 8)]
         [DataRow(0, 0, 5, 8)]
         [DataRow(10, 10, 10, 10)]
-        public void HitPlacementTest3(int x, int y, int sX, int sY)
+        public void HitPlacementTest4(int x, int y, int sX, int sY)
         {
-            HitMissle missle = new HitMissle(x, y);
             HitList hitList = new HitList();
             Armada armada = new Armada();
             Ship ship = new Ship();
@@ -124,10 +146,9 @@ namespace UnitTestBattleshipCore
             ship.XPos = sX;
             ship.YPos = sY;
 
-            hitPla.Placemen(armada, ref missle, hitList);
+            hitPla.Placemen(armada, hitList, x, y);
 
-            HitMissle missle2 = new HitMissle(x, y);
-            hitPla.Placemen(armada, ref missle2, hitList);
+            hitPla.Placemen(armada, hitList, x, y);
 
 
             Assert.IsFalse(false);

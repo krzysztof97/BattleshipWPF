@@ -1,12 +1,23 @@
 ﻿using System;
 
-namespace BattleshipCore.Models {
-    public class Ship {
+namespace BattleshipCore.Models
+{
+    ///<summary>
+    ///Basic class for all ship object
+    ///</summary>
+    ///<param name="size">describe what is the size of ship</param>
+    ///<param name="name">describe what kind of ship we replaceses</param>
+    ///<param name="orientation">describe what is the orientation of ship(horizontal or vertical)</param>
+    ///<param name="xPos">describe position in Horizontal</param>
+    ///<param name="yPos">describe position in Vertical</param>
+    ///<param name="live">describe amount of lifes</param>
+
+    public class Ship
+    {
 
         private int size;
         private string name;
         private OrientationEnum orientation;
-        private bool wisibility = true;
         private int xPos;
         private int yPos;
         private int live;
@@ -16,7 +27,6 @@ namespace BattleshipCore.Models {
         public OrientationEnum Orientation { get => orientation; set => orientation = value; }
         public int XPos { get => xPos; set => xPos = value; }
         public int YPos { get => yPos; set => yPos = value; }
-        public bool Wisibility { get => wisibility; set => wisibility = value; }
         public int Live { get => live; set => live = value; }
 
     }

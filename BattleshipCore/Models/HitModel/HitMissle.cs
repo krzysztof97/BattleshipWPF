@@ -20,7 +20,6 @@ namespace BattleshipCore.Models.Players.Hit
         {
             this.XPos = xPos;
             this.YPos = yPos;
-
         }
     }
 }

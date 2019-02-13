@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models
 {
+    ///<summary>
+    ///Enum class. Use to describe orientation.
+    ///</summary>
     public enum OrientationEnum
     {
         Horizontal,

@@ -38,7 +38,7 @@ namespace BattleshipCore.Models.Players
                 int valueX = randomHit.AIRandoHi();
                 int valueY = randomHit.AIRandoHi();
                 HitMissle missle = new HitMissle(valueX, valueY);
-                HitPlacement.Placemen(Armada, ref missle, HitList);
+                HitPlacement.Placemen(Armada, HitList, valueX, valueY);
 
 
                 switch (missle.IsHit)
