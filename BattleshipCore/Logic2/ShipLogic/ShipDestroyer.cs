@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Logic2
 {
-    class ShipDestroyer
+    public class ShipDestroyer
     {
-        string message;
+        private string message;
         public string Message { get => message; set => message = value; }
+        private Ship ship;
+        public Ship Ship { get => ship; set => ship = value; }
 
-        public ShipDestroyer(Armada armada, Ship ship, HitMissle missle)
+        public ShipDestroyer(Ship ship, Player player)
         {
-            if (missle.IsHit == HitValueEnum.Hitted)
-            {
-                ship.Live--;
+            Ship = ship;
 
-                if (ship.Live == 0)
-                {
-                    Message = $"zniszczono {ship.Name}";
-                    armada.Army.Remove(ship);
-                }
+            ship.Live--;
+
+            if (ship.Live == 0)
+            {
+                Message = $"{player.Name} zniszczył {ship.Name}";
             }
         }
 

@@ -13,20 +13,23 @@ namespace BattleshipCore.Models.Players
     {
         HitPlacement hitPlacement = new HitPlacement();
         HitList hitList = new HitList();
-        Armada armada = new Armada();
+        Armada armada;
         AIAdmiral admiral;
         public HitPlacement HitPlacement { get => hitPlacement; set => hitPlacement = value; }
         public HitList HitList { get => hitList; set => hitList = value; }
         public Armada Armada { get => armada; set => armada = value; }
         public AIAdmiral Admiral { get => admiral; set => admiral = value; }
-        public HitValueEnum LastHitMissleState;
+        public HitMissle LastHitMissle;
 
-        public User(string name, AIAdmiral admiral, Armada armada)
+        private ShipDestroyer shipDestroyer;
+        public ShipDestroyer ShipDestr { get => shipDestroyer; set => shipDestroyer = value; }
+
+
+        public User(string name, Armada armada)
         {
             this.Name = name;
             this.Wins = 0;
             this.Turn = true;
-            this.Admiral = admiral;
             this.Armada = armada;
         }
         public bool MisslePush(int xPos, int yPos)
@@ -35,12 +38,13 @@ namespace BattleshipCore.Models.Players
             {
                 int valueX = xPos;
                 int valueY = yPos;
-                bool isHit = HitPlacement.Placemen(Armada, HitList, valueX, valueY);
-                LastHitMissleState = HitPlacement.Missle.IsHit;
+                bool isHit = HitPlacement.Placemen(Admiral.Armada, HitList, valueX, valueY, this);
+                LastHitMissle = HitPlacement.Missle;
 
-                switch (HitPlacement.Missle.IsHit)
+                switch (LastHitMissle.IsHit)
                 {
                     case HitValueEnum.Hitted:
+                        ShipDestr = HitPlacement.ShipDestr;
                         Turn = true;
                         break;
                     case HitValueEnum.Missed:

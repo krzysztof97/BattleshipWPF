@@ -15,8 +15,11 @@ namespace BattleshipApp.ViewModels
         private PlacementControl placementControl; 
         private WelcomeControl welcomeControl; 
         private BattleControl battleControl; 
+        private EndControl endControl; 
         private ObservableCollection<Control> mainContainer;
         private Game gameEngine;
+
+        private string footer;
 
         public ObservableCollection<Control> MainContainer
         {
@@ -25,6 +28,14 @@ namespace BattleshipApp.ViewModels
             {
                 mainContainer = value;
                 this.RaisePropertyChanged("MainContainer");
+            }
+        }
+
+        public string Footer { get => footer;
+            set
+            {
+                footer = value;
+                this.RaisePropertyChanged("Footer");
             }
         }
 
@@ -57,6 +68,14 @@ namespace BattleshipApp.ViewModels
             MainContainer.Add(battleControl);
         }
 
+        private void EndGame()
+        {
+            Footer = "";
+            endControl = new EndControl();
+            MainContainer.Clear();
+            MainContainer.Add(endControl);
+        }
+
         private void HandleMessage(string message)
         {
             switch (message)
@@ -67,7 +86,11 @@ namespace BattleshipApp.ViewModels
                 case "Welcome:GoNext":
                     this.ShowPlacement();
                     break;
+                case "Battle:EndGame":
+                    this.EndGame();
+                    break;
                 default:
+                    Footer = message;
                     break;
             }
             Console.WriteLine(message);

@@ -77,10 +77,14 @@
     </Compile>
     <Compile Include="Helpers\GridHelpers.cs" />
     <Compile Include="ViewModels\BattleViewModel.cs" />
+    <Compile Include="ViewModels\EndViewModel.cs" />
     <Compile Include="ViewModels\PlacementViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="EndControl.xaml.cs">
+      <DependentUpon>EndControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeControl.xaml.cs">
       <DependentUpon>WelcomeControl.xaml</DependentUpon>
     </Compile>
@@ -103,6 +107,10 @@
     <Page Include="PlacementControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EndControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WelcomeControl.xaml">
       <SubType>Designer</SubType>

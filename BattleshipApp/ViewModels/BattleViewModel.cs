@@ -75,6 +75,7 @@ namespace BattleshipApp.ViewModels
 
         private void HitShip(MouseButtonEventArgs e)
         {
+            Messenger.Default.Send<string>("");
             if (!(e.Source is Grid))
             {
                 return;
@@ -84,27 +85,78 @@ namespace BattleshipApp.ViewModels
             int colIndex, rowIndex;
             GridHelpers.CalculateClickedCell(e, out colIndex, out rowIndex);
 
-            if(!gameEngine.HitShip(colIndex, rowIndex))
+
+            // strzał użytkownika
+            if (gameEngine.HitShip(colIndex, rowIndex))
             {
-                return;
+                Rectangle hitShape = new Rectangle();
+                hitShape.SetValue(Grid.ColumnProperty, colIndex);
+                hitShape.SetValue(Grid.RowProperty, rowIndex);
+                hitShape.Margin = new Thickness(5);
+
+                if (gameEngine.LastUserHitMissle.IsHit == HitValueEnum.Hitted) // sprawdzenie czy statek trafiony
+                {
+                    hitShape.Fill = new SolidColorBrush(Colors.DarkRed);
+                    if (gameEngine.UserHittedShipDestr.Ship.Live == 0)
+                    {
+                        Messenger.Default.Send<string>(gameEngine.UserHittedShipDestr.Message);
+                    }
+                }
+                else
+                {
+                    hitShape.Fill = new SolidColorBrush(Colors.Gray);
+                }
+
+                grid.Children.Add(hitShape);
             }
 
-            Rectangle hitShape = new Rectangle();
-            hitShape.SetValue(Grid.ColumnProperty, colIndex);
-            hitShape.SetValue(Grid.RowProperty, rowIndex);
-            hitShape.Margin = new Thickness(5);
+            if (!gameEngine.OpponentAlive())
+            {
+                EndGame();
+            }
 
-            if(gameEngine.LastUserHitMissleState == HitValueEnum.Hitted) // sprawdzenei czy statek trafiony
+            // strzał przeciwnika
+            bool opponentHitReplay;
+            do
             {
-                hitShape.Fill = new SolidColorBrush(Colors.DarkRed);
-            }
-            else
+                opponentHitReplay = false;
+
+                if (gameEngine.OpponentHitShip())
+                {
+                    Rectangle opHitShape = new Rectangle();
+                    opHitShape.SetValue(Grid.ColumnProperty, gameEngine.LastOpponentHitMissle.XPos);
+                    opHitShape.SetValue(Grid.RowProperty, gameEngine.LastOpponentHitMissle.YPos);
+                    opHitShape.Margin = new Thickness(5);
+
+                    if (gameEngine.LastOpponentHitMissle.IsHit == HitValueEnum.Hitted) // sprawdzenie czy statek trafiony
+                    {
+                        opponentHitReplay = true;
+                        opHitShape.Fill = new SolidColorBrush(Colors.DarkRed);
+                        if (gameEngine.OpponentHittedShipDestr.Ship.Live == 0)
+                        {
+                            Messenger.Default.Send<string>(gameEngine.OpponentHittedShipDestr.Message);
+                        }
+                    }
+                    else
+                    {
+                        opHitShape.Fill = new SolidColorBrush(Colors.Gray);
+                    }
+
+                    playerGrid.Add(opHitShape);
+                }
+
+            } while (opponentHitReplay);
+
+            if (!gameEngine.UserAlive())
             {
-                hitShape.Fill = new SolidColorBrush(Colors.Gray);
+                EndGame();
             }
-            
-            grid.Children.Add(hitShape);
-            
+
+        }
+
+        private void EndGame()
+        {
+            Messenger.Default.Send<string>("Battle:EndGame");
         }
 
     }

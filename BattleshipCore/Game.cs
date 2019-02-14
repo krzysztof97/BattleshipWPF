@@ -1,6 +1,7 @@
 ﻿using BattleshipCore.Logic2;
 using BattleshipCore.Models;
 using BattleshipCore.Models.Players;
+using BattleshipCore.Models.Players.Hit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,22 @@ namespace BattleshipCore
         private User user;
         private AIAdmiral aiAdmiral;
         public int testint = 1;
-        public HitValueEnum LastUserHitMissleState;
+        public HitMissle LastUserHitMissle;
+        public HitMissle LastOpponentHitMissle;
+        private ShipDestroyer userHittedShipDestroyer;
+        public ShipDestroyer UserHittedShipDestr { get => userHittedShipDestroyer; set => userHittedShipDestroyer = value; }
+        private ShipDestroyer opponentHittedShipDestroyer;
+        public ShipDestroyer OpponentHittedShipDestr { get => opponentHittedShipDestroyer; set => opponentHittedShipDestroyer = value; }
+        public string EndGameMessage;
+
 
         public Game()
         {
             shipPlacement = new ShipPlacement();
-            user = new User("Gracz", aiAdmiral, shipPlacement.Armada);
-            aiAdmiral = new AIAdmiral(user);
+            user = new User("Gracz", shipPlacement.Armada);
+            aiAdmiral = new AIAdmiral();
+            user.Admiral = aiAdmiral;
+            aiAdmiral.User = user;
         }
 
         public bool ShipDeploy(Ship ship)
@@ -92,9 +102,43 @@ namespace BattleshipCore
         public bool HitShip(int xPos, int yPos)
         {
             if (user.MisslePush(xPos, yPos)) {
-                LastUserHitMissleState = user.LastHitMissleState;
+                LastUserHitMissle = user.LastHitMissle;
+                if(LastUserHitMissle.IsHit == HitValueEnum.Hitted)
+                {
+                    UserHittedShipDestr = user.ShipDestr;
+                }
                 return true;
             }
+            return false;
+        }
+
+        public bool OpponentHitShip()
+        {
+            if (aiAdmiral.MisslePush())
+            {
+                LastOpponentHitMissle = aiAdmiral.LastHitMissle;
+                OpponentHittedShipDestr = aiAdmiral.ShipDestr;
+                return true;
+            }
+            return false;
+        }
+
+        public bool UserAlive()
+        {
+            if(user.Armada.Army.Where(x => x.Live > 0).Any())
+            {
+                return true;
+            }
+            EndGameMessage = $"{aiAdmiral.Name} wygrywa";
+            return false;
+        }
+        public bool OpponentAlive()
+        {
+           if(aiAdmiral.Armada.Army.Where(x => x.Live > 0).Any())
+            {
+                return true;
+            }
+            EndGameMessage = $"{user.Name} wygrywa";
             return false;
         }
     }

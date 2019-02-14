@@ -29,6 +29,7 @@ namespace BattleshipApp.ViewModels
             SimpleIoc.Default.Register<PlacementViewModel>();
             SimpleIoc.Default.Register<BattleViewModel>();
             SimpleIoc.Default.Register<WelcomeViewModel>();
+            SimpleIoc.Default.Register<EndViewModel>();
         }
 
         public MainViewModel Main
@@ -60,6 +61,14 @@ namespace BattleshipApp.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<WelcomeViewModel>();
+            }
+        }
+
+        public EndViewModel End
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EndViewModel>();
             }
         }
 

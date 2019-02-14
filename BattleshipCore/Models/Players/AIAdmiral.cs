@@ -15,46 +15,56 @@ namespace BattleshipCore.Models.Players
 
         HitPlacement hitPlacement = new HitPlacement();
         HitList hitList = new HitList();
-        AIRandoHit randomHit = new AIRandoHit();
         Armada armada;
         User user;
         internal HitPlacement HitPlacement { get => hitPlacement; set => hitPlacement = value; }
         public HitList HitList { get => hitList; set => hitList = value; }
         public Armada Armada { get => armada; set => armada = value; }
         public User User { get => user; set => user = value; }
+        public HitMissle LastHitMissle;
 
-        public AIAdmiral(User user)
+        private ShipDestroyer shipDestroyer;
+        public ShipDestroyer ShipDestr { get => shipDestroyer; set => shipDestroyer = value; }
+
+        public AIAdmiral()
         {
             this.Name = "Admirał Bismarck";
             this.Wins = 0;
             this.Turn = false;
-            this.User = user;
             GenerateArmada();
         }
 
 
-        public void MisslePush()
+        public bool MisslePush()
         {
+            Random rnd = new Random();
             if (Turn)
             {
-                int valueX = randomHit.AIRandoHi();
-                int valueY = randomHit.AIRandoHi();
-                HitMissle missle = new HitMissle(valueX, valueY);
-                HitPlacement.Placemen(Armada, HitList, valueX, valueY);
-
-
-                switch (missle.IsHit)
+                bool isHit;
+                do
                 {
-                    case HitValueEnum.Hitted:
-                        Turn = true;
-                        break;
-                    case HitValueEnum.Missed:
-                        Turn = false;
-                        User.Turn = true;
-                        break;
-                }
+                    int valueX = rnd.Next(10);
+                    int valueY = rnd.Next(10);
+                    isHit = HitPlacement.Placemen(User.Armada, HitList, valueX, valueY, this);
+                    LastHitMissle = HitPlacement.Missle;
+
+                    switch (LastHitMissle.IsHit)
+                    {
+                        case HitValueEnum.Hitted:
+                            ShipDestr = HitPlacement.ShipDestr;
+                            Turn = true;
+                            break;
+                        case HitValueEnum.Missed:
+                            Turn = false;
+                            User.Turn = true;
+                            break;
+                    }
+                } while (!isHit);
+               
+                return isHit;
             }
 
+            return false;
         }
 
         public void GenerateArmada()

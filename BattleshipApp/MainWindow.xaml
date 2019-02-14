@@ -20,7 +20,7 @@
             
         </ItemsControl>
         <Grid Grid.Row="2">
-            <TextBlock Text="{Binding Footer}"/>
+            <TextBlock Margin="5, 0" Foreground="White" FontSize="16" Text="{Binding Footer}"/>
         </Grid>
     </Grid>
 </Window>
