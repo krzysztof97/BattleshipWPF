@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models.Players.Hit
 {
+    /// <summary>
+    /// Declare list of HitMissle. 
+    /// </summary>
     public class HitList
     {
         private List<HitMissle> listOfHit = new List<HitMissle>();

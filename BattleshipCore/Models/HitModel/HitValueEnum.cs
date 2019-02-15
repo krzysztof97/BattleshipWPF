@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models
 {
+    /// <summary>
+    /// Enum halue to HitMissle.
+    /// </summary>
     public enum HitValueEnum
     {
         Hitted,

@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Models
 {
+    /// <summary>
+    /// Basic class for player and AI.
+    /// </summary>
     public class Player
     {
+
+    /// <param name="name">describe Name</param>
+    /// <param name="wins">describe nuber of win(not implemented yet)</param>
+    /// <param name="trun">bool walue. Use to give us informaction whose next turn</param>
         private string name;
         private int wins;
         private bool turn;

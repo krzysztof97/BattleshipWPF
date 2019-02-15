@@ -1,10 +1,11 @@
 namespace BattleshipCore.Models
 {
+    ///<summary>
+    ///Three flagpole ship. Class inherit to Ship class
+    ///</sumary>
     public class BattleShip : Ship
     {
-        ///<summary>
-        ///Three flagpole ship. Class inherit to Ship class
-        ///</sumary>
+
         public static int ShipCount = 2;
         public BattleShip(OrientationEnum orientation)
         {

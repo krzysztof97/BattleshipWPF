@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Logic2.ShipLogic
 {
+    /// <summary>
+    /// Class to set Random Ship Placement for AIAdmiral
+    /// </summary>
     public class RandomShipPlacement
     {
         Armada armada;

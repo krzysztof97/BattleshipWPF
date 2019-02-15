@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Logic2
 {
+    /// <summary>
+    /// Logic class
+    /// </summary>
     public class ShipDestroyer
     {
         private string message;
@@ -15,6 +18,11 @@ namespace BattleshipCore.Logic2
         private Ship ship;
         public Ship Ship { get => ship; set => ship = value; }
 
+        /// <summary>
+        /// Logic method. 
+        /// </summary>
+        /// <param name="ship"></param>
+        /// <param name="player"></param>
         public ShipDestroyer(Ship ship, Player player)
         {
             Ship = ship;

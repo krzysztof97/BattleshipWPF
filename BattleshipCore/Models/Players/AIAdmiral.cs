@@ -10,8 +10,15 @@ using BattleshipCore.Logic2.ShipLogic;
 
 namespace BattleshipCore.Models.Players
 {
+    /// <summary>
+    /// AI Player class.
+    /// </summary>
     public class AIAdmiral : Player
     {
+        /// <param name="hitPlacement">declare HitPlacement object</param>
+        /// <param name="hitList">declare hitList object</param>
+        /// <param name="armada">declare Armada object</param>
+        /// <param name="user">declare User object</param>
 
         HitPlacement hitPlacement = new HitPlacement();
         HitList hitList = new HitList();
@@ -26,6 +33,9 @@ namespace BattleshipCore.Models.Players
         private ShipDestroyer shipDestroyer;
         public ShipDestroyer ShipDestr { get => shipDestroyer; set => shipDestroyer = value; }
 
+        /// <summary>
+        /// Constructor class.
+        /// </summary>
         public AIAdmiral()
         {
             this.Name = "Admirał Bismarck";
@@ -34,7 +44,10 @@ namespace BattleshipCore.Models.Players
             GenerateArmada();
         }
 
-
+        /// <summary>
+        /// add HitMissle Object to HitList List(hitList).
+        /// </summary>
+        /// <returns>isHit bool value</returns>
         public bool MisslePush()
         {
             Random rnd = new Random();
@@ -66,7 +79,9 @@ namespace BattleshipCore.Models.Players
 
             return false;
         }
-
+        /// <summary>
+        /// Declare list of ship for AI.
+        /// </summary>
         public void GenerateArmada()
         {
             RandomShipPlacement rsp = new RandomShipPlacement();

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace BattleshipCore.Logic2
 {
+    /// <summary>
+    /// Logic class. Use to add to List of HitMissle object.
+    /// </summary>
     public class HitPlacement
     {
         private HitMissle missle;       
